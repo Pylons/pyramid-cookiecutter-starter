@@ -13,14 +13,15 @@ except ImportError:
 
 
 if VIRTUALENV_AVAILABLE:
-    venv.create('.')
+    venv.create('.', with_pip=True)
     proc = subprocess.Popen(
             ['bin/pip', 'install', '--upgrade', 'pip', 'setuptools'],
             shell=sys.platform.startswith('win'),
             cwd='.'
     )
+    proc.wait()
     proc = subprocess.Popen(
-            ['bin/pip', 'install', '-e'],
+            ['bin/pip', 'install', '-e', '.'],
             shell=sys.platform.startswith('win'),
             cwd='.'
     )
@@ -39,5 +40,3 @@ msg = dedent(
 """ % {'separator': separator})
 if VIRTUALENV_AVAILABLE:
     print(msg)
-else:
-    print msg
