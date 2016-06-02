@@ -38,5 +38,9 @@ msg = dedent(
     Welcome to Pyramid.  Sorry for the convenience.
     %(separator)s
 """ % {'separator': separator})
+
 if VIRTUALENV_AVAILABLE:
-    print(msg)
+    msg += "To run the generated application, cd to %s and run:" % (
+        '{{ cookiecutter.repo_name }}')
+    msg += "bin/pserve development.ini"
+print(msg)
