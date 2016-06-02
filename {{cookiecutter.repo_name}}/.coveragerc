@@ -1,0 +1,3 @@
+[run]
+source = {{ cookiecutter.project_name }}
+omit = {{ cookiecutter.project_name }}/test*
