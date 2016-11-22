@@ -15,7 +15,7 @@ def test_it(cookies, context):
     assert result.project.basename == 'myapp'
 
     subprocess.check_output(
-        os.path.join('bin', 'py.test'),
+        [os.path.join('bin', 'python'), '-m', 'pytest'],
         stderr=subprocess.STDOUT,
         cwd=result.project.strpath,
     )

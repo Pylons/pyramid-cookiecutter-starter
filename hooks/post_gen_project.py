@@ -1,4 +1,5 @@
 """ Enable venv and show convenience message """
+import os
 import subprocess
 import sys
 
@@ -22,28 +23,28 @@ VIRTUALENV_AVAILABLE = venv or virtualenv
 
 if venv:
     def make_venv(path):
-        subprocess.check_output(
-            [sys.executable, '-m', 'virtualenv', path],
-            shell=WIN,
-        )
+        venv.create(path, with_pip=True)
 elif virtualenv:
     def make_venv(path):
-        venv.create(path, with_pip=True)
+        execute_cmd([sys.executable, '-m', 'virtualenv', path])
 
+def execute_cmd(args):
+    subprocess.check_output(
+        args,
+        shell=WIN,
+        cwd=os.getcwd(),
+        stderr=subprocess.STDOUT,
+    )
+
+def pip_install(args):
+    cmd = ['bin/python', '-m', 'pip', 'install']
+    cmd += args
+    execute_cmd(cmd)
 
 if VIRTUALENV_AVAILABLE:
-    PIP = ['bin/python', '-m', 'pip', 'install']
     make_venv('.')
-    proc = subprocess.Popen(
-        PIP + ['--upgrade', 'pip', 'setuptools'],
-        shell=WIN,
-    )
-    proc.wait()
-    proc = subprocess.Popen(
-        PIP + ['-e', '.[testing]'],
-        shell=WIN,
-    )
-    proc.wait()
+    pip_install(['--upgrade', 'pip', 'setuptools'])
+    pip_install(['-e', '.[testing]'])
 
 separator = "=" * 79
 msg = dedent(
