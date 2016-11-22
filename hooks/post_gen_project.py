@@ -15,15 +15,16 @@ except ImportError:
 
 
 if VIRTUALENV_AVAILABLE:
+    PIP = ['bin/python', '-m', 'pip', 'install']
     venv.create('.', with_pip=True)
     proc = subprocess.Popen(
-            ['bin/python', '-m', 'pip', 'install', '--upgrade', 'pip', 'setuptools'],
+            PIP + ['--upgrade', 'pip', 'setuptools'],
             shell=WIN,
             cwd='.'
     )
     proc.wait()
     proc = subprocess.Popen(
-            ['bin/python', '-m', 'pip', 'install', '-e', '.[testing]'],
+            PIP + ['-e', '.[testing]'],
             shell=WIN,
             cwd='.'
     )

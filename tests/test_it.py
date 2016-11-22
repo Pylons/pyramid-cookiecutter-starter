@@ -1,4 +1,6 @@
+import os
 import pytest
+import subprocess
 
 @pytest.fixture
 def context():
@@ -11,3 +13,9 @@ def test_it(cookies, context):
     result = cookies.bake(extra_context=context)
     assert result.exit_code == 0
     assert result.project.basename == 'myapp'
+
+    subprocess.check_output(
+        os.path.join('bin', 'py.test'),
+        stderr=subprocess.STDOUT,
+        cwd=result.project.strpath,
+    )
