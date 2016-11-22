@@ -4,6 +4,8 @@ import sys
 
 from textwrap import dedent
 
+WIN = sys.platform.startswith('win')
+
 try:
     # python 3.2+
     import venv
@@ -15,14 +17,14 @@ except ImportError:
 if VIRTUALENV_AVAILABLE:
     venv.create('.', with_pip=True)
     proc = subprocess.Popen(
-            ['bin/pip', 'install', '--upgrade', 'pip', 'setuptools'],
-            shell=sys.platform.startswith('win'),
+            ['bin/python', '-m', 'pip', 'install', '--upgrade', 'pip', 'setuptools'],
+            shell=WIN,
             cwd='.'
     )
     proc.wait()
     proc = subprocess.Popen(
-            ['bin/pip', 'install', '-e', '.'],
-            shell=sys.platform.startswith('win'),
+            ['bin/python', '-m', 'pip', 'install', '-e', '.[testing]'],
+            shell=WIN,
             cwd='.'
     )
     proc.wait()
@@ -40,7 +42,7 @@ msg = dedent(
 """ % {'separator': separator})
 
 if VIRTUALENV_AVAILABLE:
-    msg += "\nTo run the generated application, cd to %s and run:" % (
-        '{{ cookiecutter.repo_name }}')
-    msg += "\nbin/pserve development.ini"
+    msg += "\nTo run the generated application:"
+    msg += "\n    cd {{ cookiecutter.repo_name }}"
+    msg += "\n    bin/pserve development.ini"
 print(msg)
