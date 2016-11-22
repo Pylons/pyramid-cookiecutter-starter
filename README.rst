@@ -2,6 +2,10 @@
 pyramid-cookiecutter-starter
 ============================
 
+.. image:: https://travis-ci.org/Pylons/pyramid-cookiecutter-starter.png?branch=master
+        :target: https://travis-ci.org/Pylons/pyramid-cookiecutter-starter
+        :alt: Master Travis CI Status
+
 A cookiecutter (project template) for creating a Pyramid starter project using
 Chameleon for templating.
 
