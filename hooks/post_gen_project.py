@@ -9,24 +9,39 @@ WIN = sys.platform.startswith('win')
 try:
     # python 3.2+
     import venv
-    VIRTUALENV_AVAILABLE = True
 except ImportError:
-    VIRTUALENV_AVAILABLE = False
+    venv = None
+
+try:
+    # python 2.x
+    import virtualenv
+except ImportError:
+    virtualenv = None
+
+VIRTUALENV_AVAILABLE = venv or virtualenv
+
+if venv:
+    def make_venv(path):
+        subprocess.check_output(
+            [sys.executable, '-m', 'virtualenv', path],
+            shell=WIN,
+        )
+elif virtualenv:
+    def make_venv(path):
+        venv.create(path, with_pip=True)
 
 
 if VIRTUALENV_AVAILABLE:
     PIP = ['bin/python', '-m', 'pip', 'install']
-    venv.create('.', with_pip=True)
+    make_venv('.')
     proc = subprocess.Popen(
-            PIP + ['--upgrade', 'pip', 'setuptools'],
-            shell=WIN,
-            cwd='.'
+        PIP + ['--upgrade', 'pip', 'setuptools'],
+        shell=WIN,
     )
     proc.wait()
     proc = subprocess.Popen(
-            PIP + ['-e', '.[testing]'],
-            shell=WIN,
-            cwd='.'
+        PIP + ['-e', '.[testing]'],
+        shell=WIN,
     )
     proc.wait()
 
