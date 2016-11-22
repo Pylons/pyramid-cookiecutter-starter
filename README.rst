@@ -2,12 +2,13 @@
 pyramid-cookiecutter-starter
 ============================
 
-A cookiecutter (project template) for creating a Pyramid starter project using Chameleon for templating.
+A cookiecutter (project template) for creating a Pyramid starter project using
+Chameleon for templating.
 
 Requirements
 ------------
 
-* Python 2.7 or 3.3+
+* Python 2.7 or 3.4+
 * `cookiecutter <https://cookiecutter.readthedocs.io/en/latest/installation.html>`_
 
 Usage
@@ -31,4 +32,5 @@ Usage
 
     $ bin/pserve development.ini
 
-For Python 3, a virtual environment is automatically created and set up in development mode.
+For Python 3, a virtual environment is automatically created and set up in
+development mode.
