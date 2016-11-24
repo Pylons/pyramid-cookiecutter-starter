@@ -46,5 +46,5 @@ def test_it(cookies, context, venv):
     assert result.project.basename == 'myapp'
 
     cwd = result.project.strpath
-    venv.install('.[testing]', editable=True, cwd=cwd)
+    venv.install('".[testing]"', editable=True, cwd=cwd)
     subprocess.check_output([venv.python, '-m', 'pytest', '-q'], cwd=cwd)
