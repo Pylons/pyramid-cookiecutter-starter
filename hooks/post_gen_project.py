@@ -33,7 +33,7 @@ msg = dedent(
         %(venv_cmd)s %(venv)s
 
     Install the project into the virtual environment:
-        %(venv)s/bin/pip install -e .[testing]
+        %(venv)s/bin/pip install -e ".[testing]"
 
     To run the generated application:
         %(venv)s/bin/pserve development.ini
