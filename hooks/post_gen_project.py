@@ -1,4 +1,3 @@
-""" Enable venv and show convenience message """
 import os
 import subprocess
 import sys
