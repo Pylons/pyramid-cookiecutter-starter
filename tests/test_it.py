@@ -3,6 +3,9 @@ import pytest
 import sys
 import subprocess
 
+WIN = sys.platform == 'win32'
+
+
 @pytest.fixture
 def context():
     return {
@@ -40,10 +43,16 @@ class VirtualEnvironment(object):
         subprocess.check_output(cmd, cwd=cwd)
 
 
-def test_it(cookies, context, venv):
+def test_it(cookies, context, venv, capfd):
     result = cookies.bake(extra_context=context)
     assert result.exit_code == 0
     assert result.project.basename == 'myapp'
+
+    out, err = capfd.readouterr()
+    if WIN:
+        assert 'Scripts\\pserve' in out
+    else:
+        assert 'bin/pserve' in out
 
     cwd = result.project.strpath
     venv.install('.[testing]', editable=True, cwd=cwd)
