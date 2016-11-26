@@ -4,8 +4,14 @@
 Getting Started
 ---------------
 
-- cd <directory containing this file>
+- Create a Python virtual environment:
 
-  - $VENV/bin/pip install -e .
+    python3 -m venv $VENV
 
-  - $VENV/bin/pserve development.ini
+- Install the project in editable mode:
+
+    $VENV/bin/pip install -e ".[testing]"
+
+- Start the server:
+
+    $VENV/bin/pserve development.ini
