@@ -18,7 +18,7 @@ def test_it(cookies, venv, capfd):
         assert 'bin/pserve' in out
 
     cwd = result.project.strpath
-    venv.install('.[testing]', editable=True, cwd=cwd)
+    venv.install(cwd + '[testing]', editable=True)
     subprocess.check_call([venv.python, '-m', 'pytest', '-q'], cwd=cwd)
 
 
