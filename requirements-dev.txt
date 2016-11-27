@@ -1,0 +1,4 @@
+cookiecutter
+pytest
+pytest-cookies
+virtualenv
