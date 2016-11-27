@@ -1,14 +1,12 @@
+import os
 import pytest
 import sys
 import subprocess
 
 WIN = sys.platform == 'win32'
 
-@pytest.mark.parametrize('pyramid_dependency', [
-    ('pyramid', False),
-    ('git+https://github.com/Pylons/pyramid.git@master#egg=pyramid', True),
-])
-def test_it(pyramid_dependency, cookies, venv, capfd):
+
+def test_it(cookies, venv, capfd):
     result = cookies.bake(extra_context={
         'project_name': 'Test Project',
         'repo_name': 'myapp',
@@ -23,7 +21,12 @@ def test_it(pyramid_dependency, cookies, venv, capfd):
         assert 'bin/pserve' in out
 
     cwd = result.project.strpath
-    venv.install(pyramid_dependency[0], editable=pyramid_dependency[1])
+
+    # this is a hook for executing scaffold tests against a specific
+    # version of pyramid (or a local checkout on disk)
+    if 'OVERRIDE_PYRAMID' in os.environ:  # pragma: no cover
+        venv.install(os.environ['OVERRIDE_PYRAMID'], editable=True)
+
     venv.install(cwd + '[testing]', editable=True)
     subprocess.check_call([venv.python, '-m', 'pytest', '-q'], cwd=cwd)
 
