@@ -31,7 +31,7 @@ class VirtualEnvironment(object):
         self.python = os.path.join(self.bin, 'python')
 
     def create(self):
-        subprocess.check_output(
+        subprocess.check_call(
             [sys.executable, '-m', 'virtualenv', self.path],
         )
 
@@ -40,7 +40,7 @@ class VirtualEnvironment(object):
         if editable:
             cmd += ['-e']
         cmd += [pkg_name]
-        subprocess.check_output(cmd, cwd=cwd)
+        subprocess.check_call(cmd, cwd=cwd)
 
 
 def test_it(cookies, context, venv, capfd):
@@ -56,4 +56,4 @@ def test_it(cookies, context, venv, capfd):
 
     cwd = result.project.strpath
     venv.install('.[testing]', editable=True, cwd=cwd)
-    subprocess.check_output([venv.python, '-m', 'pytest', '-q'], cwd=cwd)
+    subprocess.check_call([venv.python, '-m', 'pytest', '-q'], cwd=cwd)
