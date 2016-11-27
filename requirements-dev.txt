@@ -1,4 +1,4 @@
 cookiecutter
 pytest
 pytest-cookies
-virtualenv
+pytest-venv
