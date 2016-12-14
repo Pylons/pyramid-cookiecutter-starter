@@ -4,14 +4,26 @@
 Getting Started
 ---------------
 
-- Create a Python virtual environment:
+- Change directory into your newly created project.
 
-    python3 -m venv $VENV
+    cd {{ cookiecutter.project_name }}
 
-- Install the project in editable mode:
+- Create a Python virtual environment.
 
-    $VENV/bin/pip install -e ".[testing]"
+    python3 -m venv env
 
-- Start the server:
+- Upgrade packaging tools.
 
-    $VENV/bin/pserve development.ini
+    env/bin/pip install --upgrade pip setuptools wheel
+
+- Install the project in editable mode with its testing requirements.
+
+    env/bin/pip install -e ".[testing]"
+
+- Run your project's tests.
+
+    env/bin/pytest
+
+- Run your project.
+
+    env/bin/pserve development.ini
