@@ -6,7 +6,7 @@ pyramid-cookiecutter-starter
         :target: https://travis-ci.org/Pylons/pyramid-cookiecutter-starter
         :alt: Master Travis CI Status
 
-A cookiecutter (project template) for creating a Pyramid starter project using Jinja2 for templating.
+A Cookiecutter (project template) for creating a Pyramid starter project using Jinja2 for templating.
 
 Requirements
 ------------
