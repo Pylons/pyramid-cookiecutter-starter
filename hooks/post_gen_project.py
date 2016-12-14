@@ -1,4 +1,3 @@
-""" Enable venv and show convenience message """
 import os
 import subprocess
 import sys
@@ -10,13 +9,17 @@ WIN = sys.platform.startswith('win')
 venv = 'env'
 if WIN:
     venv_cmd = 'py -3 -m venv'
+    venv_bin = os.path.join(venv, 'Scripts')
 else:
     venv_cmd = 'python3 -m venv'
+    venv_bin = os.path.join(venv, 'bin')
 
 vars = dict(
     separator='=' * 79,
-    venv_cmd=venv_cmd,
     venv=venv,
+    venv_cmd=venv_cmd,
+    pip_cmd=os.path.join(venv_bin, 'pip'),
+    pserve_cmd=os.path.join(venv_bin, 'pserve'),
 )
 msg = dedent(
     """
@@ -33,9 +36,9 @@ msg = dedent(
         %(venv_cmd)s %(venv)s
 
     Install the project into the virtual environment:
-        %(venv)s/bin/pip install -e ".[testing]"
+        %(pip_cmd)s install -e ".[testing]"
 
     To run the generated application:
-        %(venv)s/bin/pserve development.ini
+        %(pserve_cmd)s development.ini
     """ % vars)
 print(msg)
