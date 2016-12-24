@@ -32,7 +32,7 @@ Usage
     # Create a virtual environment...
     $ python3 -m venv env
     # ...where we upgrade packaging tools...
-    $ env/bin/pip install --upgrade pip setuptools wheel
+    $ env/bin/pip install --upgrade pip setuptools
     # ...and into which we install our project and its testing requirements.
     $ env/bin/pip install -e ".[testing]"
 
