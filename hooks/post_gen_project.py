@@ -50,10 +50,10 @@ def remove_lines_from_files(files, substring_entries):
             print("WARNING: Post generation cannot find file: " + file)
             continue
 
-        with open(file, encoding='utf-8', mode='r') as fin:
+        with open(file, mode='r') as fin:
             lines = fin.readlines()
 
-        with open(file, encoding='utf-8', mode='w') as fout:
+        with open(file, mode='w') as fout:
             for line in lines:
                 skip_line = False
                 for substring in substring_entries:
