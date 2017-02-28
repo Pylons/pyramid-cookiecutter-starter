@@ -110,3 +110,5 @@ Contributors
 - Steve Piercy, 2016-06-08
 
 - Michael Merickel, 2016-11-22
+
+- Michael Kennedy (@mkennedy), 2017-02-28
