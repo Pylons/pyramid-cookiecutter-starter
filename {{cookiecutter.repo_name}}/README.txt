@@ -6,7 +6,7 @@ Getting Started
 
 - Change directory into your newly created project.
 
-    cd {{ cookiecutter.project_name }}
+    cd {{ cookiecutter.repo_name }}
 
 - Create a Python virtual environment.
 
