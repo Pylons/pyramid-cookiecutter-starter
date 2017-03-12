@@ -15,25 +15,35 @@ def clean_unused_template_settings():
     working = os.path.abspath(os.path.join(os.path.curdir))
     templates = os.path.join(working, '{{cookiecutter.repo_name}}', 'templates')
 
-    layout = None
-    mytemplate = None
     removal_text = None
-    view = os.path.join(working, '{{cookiecutter.repo_name}}', 'views.py')
+
+    templ_to_remove = set([
+        'layout.pt', 'mytemplate.pt',
+        'layout.jinja2', 'mytemplate.jinja2',
+        'layout.mako', 'mytemplate.mako',
+    ])
 
     if selected_lang == 'jinja2':
-        removal_text = ['chameleon', 'mytemplate.pt']
-        layout = os.path.join(templates, 'layout.pt')
-        mytemplate = os.path.join(templates, 'mytemplate.pt')
+        templ_to_remove = [i for i in templ_to_remove
+                           if not i.endswith(".jinja2")]
+        removal_text = ['chameleon', 'mytemplate.pt', 'mako', ]
     elif selected_lang == 'chameleon':
-        removal_text = ['jinja2']
-        layout = os.path.join(templates, 'layout.jinja2')
-        mytemplate = os.path.join(templates, 'mytemplate.jinja2')
+        templ_to_remove = [i for i in templ_to_remove
+                           if not i.endswith(".pt")]
+        removal_text = ['jinja2', 'mako', ]
+    elif selected_lang == 'mako':
+        templ_to_remove = [i for i in templ_to_remove
+                           if not i.endswith(".mako")]
+        removal_text = ['chameleon', 'mytemplate.pt', 'jinja2', ]
 
-    delete_files([layout, mytemplate])
-
-    setup = os.path.join(working, 'setup.py')
-    init = os.path.join(working, '{{cookiecutter.repo_name}}', '__init__.py')
-    remove_lines_from_files([setup, init, view], removal_text)
+    delete_files([os.path.join(templates, i) for i in templ_to_remove])
+    remove_lines_from_files([
+        os.path.join(working, 'development.ini'),
+        os.path.join(working, 'production.ini'),
+        os.path.join(working, 'setup.py'),
+        os.path.join(working, '{{cookiecutter.repo_name}}', '__init__.py'),
+        os.path.join(working, '{{cookiecutter.repo_name}}', 'views.py'),
+    ], removal_text)
 
 
 def delete_files(files):
@@ -90,22 +100,22 @@ def display_actions_message():
         Mailing List:  https://groups.google.com/forum/#!forum/pylons-discuss
         Welcome to Pyramid.  Sorry for the convenience.
         %(separator)s
-    
+
         Change directory into your newly created project.
             cd {{ cookiecutter.repo_name }}
-    
+
         Create a Python virtual environment.
             %(venv_cmd)s %(venv)s
-    
+
         Upgrade packaging tools.
             %(pip_cmd)s install --upgrade pip setuptools
-    
+
         Install the project in editable mode with its testing requirements.
             %(pip_cmd)s install -e ".[testing]"
-    
+
         Run your project's tests.
             %(pytest_cmd)s
-    
+
         Run your project.
             %(pserve_cmd)s development.ini
         """ % vars)

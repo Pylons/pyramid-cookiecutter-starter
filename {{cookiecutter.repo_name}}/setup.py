@@ -12,6 +12,7 @@ requires = [
     'pyramid',
     'pyramid_jinja2',
     'pyramid_chameleon',
+    'pyramid_mako',
     'pyramid_debugtoolbar',
     'waitress',
 ]
