@@ -1,11 +1,7 @@
 {
     "project_name": "Pyramid Scaffold",
     "repo_name": "scaffold",
-    "template_language": [
-	    "jinja2",
-	    "chameleon",
-	    "mako"
-    ],
+    "template_language": ["jinja2", "chameleon", "mako"],
     "_copy_without_render": [
         "static/*"
     ]
