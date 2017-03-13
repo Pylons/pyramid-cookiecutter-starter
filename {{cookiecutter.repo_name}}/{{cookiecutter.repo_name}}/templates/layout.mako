@@ -60,4 +60,3 @@
     <script src="//oss.maxcdn.com/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
   </body>
 </html>
-

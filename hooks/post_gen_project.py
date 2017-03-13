@@ -53,7 +53,7 @@ def display_actions_message():
         %(separator)s
         Documentation: http://docs.pylonsproject.org/projects/pyramid/en/latest/
         Tutorials:     http://docs.pylonsproject.org/projects/pyramid_tutorials/en/latest/
-        Twitter:       https://twitter.com/PylonsProject
+        Twitter:       https://twitter.com/trypyramid
         Mailing List:  https://groups.google.com/forum/#!forum/pylons-discuss
         Welcome to Pyramid.  Sorry for the convenience.
         %(separator)s
