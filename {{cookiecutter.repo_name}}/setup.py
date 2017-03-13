@@ -10,9 +10,7 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
 
 requires = [
     'pyramid',
-    'pyramid_jinja2',
-    'pyramid_chameleon',
-    'pyramid_debugtoolbar',
+    'pyramid_{{ cookiecutter.template_language }}',
     'waitress',
 ]
 
