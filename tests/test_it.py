@@ -6,9 +6,11 @@ import subprocess
 WIN = sys.platform == 'win32'
 
 
-def test_it(cookies, venv, capfd):
+@pytest.mark.parametrize('template', ['jinja2', 'mako', 'chameleon'])
+def test_it(cookies, venv, capfd, template):
     result = cookies.bake(extra_context={
         'project_name': 'Test Project',
+        'template_language': template,
         'repo_name': 'myapp',
     })
     assert result.exit_code == 0
