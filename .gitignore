@@ -2,5 +2,3 @@ __pycache__
 *.py[cod]
 /.tox
 /env*/
-.DS_Store
-.idea
