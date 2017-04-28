@@ -116,3 +116,5 @@ Contributors
 - Petr Blahoš, 2017-03-12
 
 - Krystian Rosiński, 2017-03-17
+
+- Rémy Hubscher (@natim), 2017-04-27
