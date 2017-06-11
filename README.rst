@@ -2,7 +2,7 @@
 pyramid-cookiecutter-starter
 ============================
 
-.. image:: https://travis-ci.org/Pylons/pyramid-cookiecutter-starter.png?branch=master
+.. image:: https://travis-ci.org/Pylons/pyramid-cookiecutter-starter.png?branch=latest
         :target: https://travis-ci.org/Pylons/pyramid-cookiecutter-starter
         :alt: Master Travis CI Status
 
