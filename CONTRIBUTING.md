@@ -1,6 +1,6 @@
 # Contributing
 
-All projects under the Pylons Project, including this one, follow the guidelines established at [How to Contribute](http://www.pylonsproject.org/community/how-to-contribute) and [Coding Style and Standards](http://docs.pylonsproject.org/en/latest/community/codestyle.html).
+All projects under the Pylons Project, including this one, follow the guidelines established at [How to Contribute](https://pylonsproject.org/community-how-to-contribute.html) and [Coding Style and Standards](http://docs.pylonsproject.org/en/latest/community/codestyle.html).
 
 You can contribute to this project in several ways.
 
