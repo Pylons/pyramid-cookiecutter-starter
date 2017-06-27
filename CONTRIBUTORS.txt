@@ -118,3 +118,5 @@ Contributors
 - Krystian Rosiński, 2017-03-17
 
 - Rémy Hubscher (@natim), 2017-04-27
+
+- goodwillcoding, 2017-05-22
