@@ -9,6 +9,7 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
+    'plaster_pastedeploy',
     'pyramid',
     'pyramid_{{ cookiecutter.template_language }}',
     'pyramid_debugtoolbar',
