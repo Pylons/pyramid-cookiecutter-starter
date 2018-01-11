@@ -51,8 +51,8 @@ def display_actions_message():
     msg = dedent(
         """
         %(separator)s
-        Documentation: http://docs.pylonsproject.org/projects/pyramid/en/latest/
-        Tutorials:     http://docs.pylonsproject.org/projects/pyramid_tutorials/en/latest/
+        Documentation: https://docs.pylonsproject.org/projects/pyramid/en/latest/
+        Tutorials:     https://docs.pylonsproject.org/projects/pyramid_tutorials/en/latest/
         Twitter:       https://twitter.com/PylonsProject
         Mailing List:  https://groups.google.com/forum/#!forum/pylons-discuss
         Welcome to Pyramid.  Sorry for the convenience.
