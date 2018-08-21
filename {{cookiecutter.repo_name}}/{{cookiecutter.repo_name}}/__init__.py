@@ -6,7 +6,6 @@ def main(global_config, **settings):
     """
     config = Configurator(settings=settings)
     config.include('pyramid_{{ cookiecutter.template_language }}')
-    config.add_static_view('static', 'static', cache_max_age=3600)
-    config.add_route('home', '/')
+    config.include('.routes')
     config.scan()
     return config.make_wsgi_app()
