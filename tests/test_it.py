@@ -30,6 +30,8 @@ def test_it(cookies, venv, capfd, template):
         venv.install(os.environ['OVERRIDE_PYRAMID'], editable=True)
 
     venv.install(cwd + '[testing]', editable=True)
+    # TEMPORARY DO NOT MERGE
+    venv.install('git+https://github.com/nicoddemus/pytest@issue-3506')
     subprocess.check_call([venv.python, '-m', 'pytest', '-q'], cwd=cwd)
 
 
