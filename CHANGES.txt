@@ -1,3 +1,15 @@
+0.3
+---
+
+- Use a context manager.
+  See https://github.com/Pylons/pyramid-cookiecutter-starter/issues/44
+
+- Align template layout with alchemy cookiecutter.
+  See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/53
+
+- Update Twitter Bootstrap external resources.
+  See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/48/
+
 0.2
 ---
 
