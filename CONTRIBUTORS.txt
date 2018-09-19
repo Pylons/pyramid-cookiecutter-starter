@@ -122,3 +122,5 @@ Contributors
 - goodwillcoding, 2017-05-22
 
 - Marcin Lulek (@ergo), 2018-08-21
+
+- Stephen Martin, 2018-09-18
