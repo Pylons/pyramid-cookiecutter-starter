@@ -6,7 +6,7 @@ pyramid-cookiecutter-starter
         :target: https://travis-ci.org/Pylons/pyramid-cookiecutter-starter
         :alt: Master Travis CI Status
 
-A Cookiecutter (project template) for creating a Pyramid starter project using URL dispatch for routing and either Jinja2, Chameleon, or Mako for templating.
+A Cookiecutter (project template) for creating a Pyramid starter project using URL dispatch. Customizable options upon install are Jinja2, Chameleon, or Mako for templating and memory, SQLAlchemy, or ZODB for a persistent backend.
 
 Requirements
 ------------
