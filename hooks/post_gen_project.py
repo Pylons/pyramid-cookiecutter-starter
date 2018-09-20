@@ -54,7 +54,7 @@ def clean_unused_backend():
 
 def delete_other_files(directory, current_prefix, rm_prefixes):
     """
-    Each backend has associated files in the cookiecutter, prefixed by it's
+    Each backend has associated files in the cookiecutter, prefixed by its
     name. Additionally, there is a base_ prefix that gets included no matter
     the selection. Here, we rename or remove these prefixes based on the
     selected backend.
