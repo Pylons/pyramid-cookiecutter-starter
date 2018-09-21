@@ -184,7 +184,7 @@ def test_zodb(cookies, venv, capfd, template):
 
     cwd = result.project.strpath
 
-    # this is a hook for executing scaffold tests against a specifick
+    # this is a hook for executing scaffold tests against a specific
     # version of pyramid (or a local checkout on disk)
     if 'OVERRIDE_PYRAMID' in os.environ:  # pragma: no cover
         venv.install(os.environ['OVERRIDE_PYRAMID'], editable=True)
@@ -231,7 +231,7 @@ def test_sqlalchemy(cookies, venv, capfd, template):
 
     cwd = result.project.strpath
 
-    # this is a hook for executing scaffold tests against a specifick
+    # this is a hook for executing scaffold tests against a specific
     # version of pyramid (or a local checkout on disk)
     if 'OVERRIDE_PYRAMID' in os.environ:  # pragma: no cover
         venv.install(os.environ['OVERRIDE_PYRAMID'], editable=True)
