@@ -14,11 +14,25 @@ requires = [
     'pyramid_{{ cookiecutter.template_language }}',
     'pyramid_debugtoolbar',
     'waitress',
+    {%- if cookiecutter.backend == 'sqlalchemy' %}
+    'alembic',
+    'pyramid_retry',
+    'pyramid_tm',
+    'SQLAlchemy',
+    'transaction',
+    'zope.sqlalchemy',
+    {%- elif cookiecutter.backend == 'zodb' %}
+    'pyramid_retry',
+    'pyramid_tm',
+    'pyramid_zodbconn',
+    'transaction',
+    'ZODB3',
+    {%- endif %}
 ]
 
 tests_require = [
     'WebTest >= 1.3.1',  # py3 compat
-    'pytest',
+    'pytest >= 3.7.4',
     'pytest-cov',
 ]
 
@@ -48,5 +62,10 @@ setup(
         'paste.app_factory': [
             'main = {{ cookiecutter.repo_name }}:main',
         ],
+        {%- if cookiecutter.backend == 'sqlalchemy' %}
+        'console_scripts': [
+            'initialize_{{ cookiecutter.repo_name }}_db={{ cookiecutter.repo_name }}.scripts.initialize_db:main',
+        ],
+        {%- endif %}
     },
 )
