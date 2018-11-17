@@ -17,7 +17,7 @@ Customizable options upon install include choice of:
 Requirements
 ------------
 
-* Python 2.7 or 3.4+
+* Python 3.4+
 * `cookiecutter <https://cookiecutter.readthedocs.io/en/latest/installation.html>`_
 
 Versions
