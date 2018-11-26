@@ -18,7 +18,6 @@ def main(global_config, **settings):
         config.include('.models')
     {%- endif %}
     {%- if cookiecutter.backend == 'zodb' %}
-        settings['tm.manager_hook'] = 'pyramid_tm.explicit_manager'
         config.include('pyramid_tm')
         config.include('pyramid_retry')
         config.include('pyramid_zodbconn')
