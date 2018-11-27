@@ -1,3 +1,22 @@
+unreleased
+----------
+
+- Drop Python 2 support.
+  See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/63
+
+- Allow input values to display by setting the text color to black instead of
+  inheriting the color of white.
+  See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/64
+
+
+1.10 (2018-10-05)
+-----------------
+
+- pyramid-cookiecutter-starter combines all features of
+  pyramid-cookiecutter-alchemy and pyramid-cookiecutter-zodb.
+  See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/61
+
+
 0.3
 ---
 
@@ -9,6 +28,7 @@
 
 - Update Twitter Bootstrap external resources.
   See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/48/
+
 
 0.2
 ---
