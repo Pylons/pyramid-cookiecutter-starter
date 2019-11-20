@@ -124,3 +124,5 @@ Contributors
 - Marcin Lulek (@ergo), 2018-08-21
 
 - Stephen Martin, 2018-09-18
+
+- Maciej Janowski (@druidmaciek), 2019-11-20
