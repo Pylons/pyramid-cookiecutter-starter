@@ -1,6 +1,22 @@
 unreleased
 ----------
 
+- Drop Python 3.4 support, and add Python 3.8 support.
+  See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/74
+
+- Fix ``lang`` attribute syntax for Chameleon template.
+  See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/73
+
+- Add ``logger_alembic`` to ``ini`` files.
+  See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/71
+
+- Remove the settings for ``tm.manager_hook``.
+  See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/66
+
+- Fix an issue where entered values in inputs inherit white as their text
+  color, making it impossible to see entered values.
+  See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/64
+
 - Drop Python 2 support.
   See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/63
 
