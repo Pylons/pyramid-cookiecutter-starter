@@ -1,6 +1,10 @@
 unreleased
 ----------
 
+- Fix DeprecationWarning: Use of .. or absolute path in a resource path is not
+  allowed and will raise exceptions in a future release.
+  See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/76
+
 - Drop Python 3.4 support, and add Python 3.8 support.
   See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/74
 
