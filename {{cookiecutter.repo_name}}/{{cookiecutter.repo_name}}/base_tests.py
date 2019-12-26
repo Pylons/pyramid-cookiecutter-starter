@@ -78,6 +78,12 @@ class ViewTests(unittest.TestCase):
         request = testing.DummyRequest()
         info = my_view(request)
         self.assertEqual(info['project'], '{{ cookiecutter.project_name }}')
+
+    def test_notfound_view(self):
+        from .views.notfound import notfound_view
+        request = testing.DummyRequest()
+        info = notfound_view(request)
+        self.assertEqual(info, {})
 {% endif %}
 {% if cookiecutter.backend == 'none' %}
 class FunctionalTests(unittest.TestCase):
@@ -90,4 +96,8 @@ class FunctionalTests(unittest.TestCase):
     def test_root(self):
         res = self.testapp.get('/', status=200)
         self.assertTrue(b'Pyramid' in res.body)
+
+    def test_notfound(self):
+        res = self.testapp.get('/badurl', status=404)
+        self.assertTrue(res.status_code == 404)
 {% endif -%}
