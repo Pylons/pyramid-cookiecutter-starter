@@ -6,7 +6,7 @@ from pyramid.view import view_config
 from ..models import MyModel
 
 
-@view_config(context=MyModel, renderer='../templates/mytemplate.{{ "pt" if "chameleon" == cookiecutter.template_language else cookiecutter.template_language }}')
+@view_config(context=MyModel, renderer='{{ cookiecutter.repo_name }}:templates/mytemplate.{{ "pt" if "chameleon" == cookiecutter.template_language else cookiecutter.template_language }}')
 def my_view(request):
     return {'project': '{{ cookiecutter.project_name }}'}
 
@@ -19,7 +19,7 @@ from sqlalchemy.exc import DBAPIError
 from .. import models
 
 
-@view_config(route_name='home', renderer='../templates/mytemplate.{{ "pt" if "chameleon" == cookiecutter.template_language else cookiecutter.template_language }}')
+@view_config(route_name='home', renderer='{{ cookiecutter.repo_name }}:templates/mytemplate.{{ "pt" if "chameleon" == cookiecutter.template_language else cookiecutter.template_language }}')
 def my_view(request):
     try:
         query = request.dbsession.query(models.MyModel)
@@ -48,7 +48,7 @@ try it again.
 {%- elif cookiecutter.backend == 'none' %}
 
 
-@view_config(route_name='home', renderer='../templates/mytemplate.{{ "pt" if "chameleon" == cookiecutter.template_language else cookiecutter.template_language }}')
+@view_config(route_name='home', renderer='{{ cookiecutter.repo_name }}:templates/mytemplate.{{ "pt" if "chameleon" == cookiecutter.template_language else cookiecutter.template_language }}')
 def my_view(request):
     return {'project': '{{ cookiecutter.project_name }}'}
 
