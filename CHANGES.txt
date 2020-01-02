@@ -1,6 +1,9 @@
 unreleased
 ----------
 
+- Remove omit line that is no longer needed after moving tests.
+  See https://github.com/Pylons/pyramid-cookiecutter-starter/issues/82
+
 - Fix DeprecationWarning: Use of .. or absolute path in a resource path is not
   allowed and will raise exceptions in a future release.
   See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/76
