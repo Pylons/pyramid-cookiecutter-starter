@@ -1,3 +1,2 @@
 [run]
 source = {{ cookiecutter.repo_name }}
-omit = {{ cookiecutter.repo_name }}/test*
