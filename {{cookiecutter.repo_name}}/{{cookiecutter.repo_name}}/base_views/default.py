@@ -1,6 +1,5 @@
 from pyramid.view import view_config
 
-
 {%- if cookiecutter.backend == 'zodb' %}
 
 from ..models import MyModel
@@ -13,7 +12,6 @@ def my_view(request):
 
 {%- elif cookiecutter.backend == 'sqlalchemy' %}
 from pyramid.response import Response
-
 from sqlalchemy.exc import DBAPIError
 
 from .. import models

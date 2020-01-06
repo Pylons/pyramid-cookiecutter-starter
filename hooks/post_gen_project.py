@@ -67,9 +67,7 @@ def delete_other_files(directory, current_prefix, rm_prefixes):
             full_path = to_path
 
         for rm_prefix in rm_prefixes:
-
             if filename.startswith(rm_prefix):
-
                 if os.path.isdir(full_path):
                     shutil.rmtree(full_path)
                 else:

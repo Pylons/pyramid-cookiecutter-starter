@@ -2,6 +2,7 @@ import os
 import pytest
 import sys
 import subprocess
+import textwrap
 
 WIN = sys.platform == 'win32'
 WORKING = os.path.abspath(os.path.join(os.path.curdir))
@@ -21,14 +22,17 @@ base_files = [
     '/myapp/views/default.py',
     '/myapp/views/notfound.py',
     '/tests/__init__.py',
-    '/tests/test_it.py',
+    '/tests/conftest.py',
+    '/tests/test_functional.py',
+    '/tests/test_views.py',
     'CHANGES.txt',
     'MANIFEST.in',
     'README.txt',
     'development.ini',
     'production.ini',
     'pytest.ini',
-    'setup.py'
+    'setup.py',
+    'testing.ini',
 ]
 
 sqlalchemy_files = [
@@ -55,14 +59,17 @@ sqlalchemy_files = [
     '/myapp/views/default.py',
     '/myapp/views/notfound.py',
     '/tests/__init__.py',
-    '/tests/test_it.py',
+    '/tests/conftest.py',
+    '/tests/test_functional.py',
+    '/tests/test_views.py',
     'CHANGES.txt',
     'MANIFEST.in',
     'README.txt',
     'development.ini',
     'production.ini',
     'pytest.ini',
-    'setup.py'
+    'setup.py',
+    'testing.ini',
 ]
 
 zodb_files = [
@@ -82,14 +89,17 @@ zodb_files = [
     '/myapp/views/default.py',
     '/myapp/views/notfound.py',
     '/tests/__init__.py',
-    '/tests/test_it.py',
+    '/tests/conftest.py',
+    '/tests/test_functional.py',
+    '/tests/test_views.py',
     'CHANGES.txt',
     'MANIFEST.in',
     'README.txt',
     'development.ini',
     'production.ini',
     'pytest.ini',
-    'setup.py'
+    'setup.py',
+    'testing.ini',
 ]
 
 
@@ -240,6 +250,20 @@ def test_sqlalchemy(cookies, venv, capfd, template):
         venv.install(os.environ['OVERRIDE_PYRAMID'], editable=True)
 
     venv.install(cwd + '[testing]', editable=True)
+    create_migration_script = textwrap.dedent(
+        '''
+        import alembic.config
+        import alembic.command
+
+        config = alembic.config.Config('testing.ini')
+        alembic.command.revision(
+            config,
+            autogenerate=True,
+            message='init',
+        )
+        '''
+    )
+    subprocess.check_call([venv.python, '-c', create_migration_script], cwd=cwd)
     subprocess.check_call([venv.python, '-m', 'pytest', '-q'], cwd=cwd)
 
 
