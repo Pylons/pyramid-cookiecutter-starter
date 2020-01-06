@@ -66,58 +66,17 @@ def dbsession(app, tm):
     session_factory = app.registry['dbsession_factory']
     return models.get_tm_session(session_factory, tm)
 
-class TestApp(webtest.TestApp):
-    def get_cookie(self, name, default=None):
-        # webtest currently doesn't expose the unescaped cookie values
-        # so we're using webob to parse them for us
-        # see https://github.com/Pylons/webtest/issues/171
-        cookie = Cookie(' '.join(
-            '%s=%s' % (c.name, c.value)
-            for c in self.cookiejar
-            if c.name == name
-        ))
-        return next(
-            (m.value.decode('latin-1') for m in cookie.values()),
-            default,
-        )
-
-    def get_csrf_token(self):
-        """
-        Convenience method to get the current CSRF token.
-
-        This value must be passed to POST/PUT/DELETE requests in either the
-        "X-CSRF-Token" header or the "csrf_token" form value.
-
-        testapp.post(..., headers={'X-CSRF-Token': testapp.get_csrf_token()})
-
-        or
-
-        testapp.post(..., {'csrf_token': testapp.get_csrf_token()})
-
-        """
-        return self.get_cookie('csrf_token')
-
-    def login(self, params, status=303, **kw):
-        """ Convenience method to login the client."""
-        body = dict(csrf_token=self.get_csrf_token())
-        body.update(params)
-        return self.post('/login', body, **kw)
-
 @pytest.fixture
 def testapp(app, tm, dbsession):
     # override request.dbsession and request.tm with our own
     # externally-controlled values that are shared across requests but aborted
     # at the end
-    testapp = TestApp(app, extra_environ={
+    testapp = webtest.TestApp(app, extra_environ={
         'HTTP_HOST': 'example.com',
         'tm.active': True,
         'tm.manager': tm,
         'app.dbsession': dbsession,
     })
-
-    # initialize a csrf token instead of running an initial request to get one
-    # from the actual app - this only works using the CookieCSRFStoragePolicy
-    testapp.set_cookie('csrf_token', 'dummy_csrf_token')
 
     return testapp
 
