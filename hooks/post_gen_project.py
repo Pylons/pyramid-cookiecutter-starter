@@ -63,7 +63,10 @@ def delete_other_files(directory, current_prefix, rm_prefixes):
         if filename.startswith(base_prefix):
             filename = filename[len(base_prefix):]
             to_path = os.path.join(directory, filename)
-            os.rename(full_path, to_path)
+            if os.path.exists(to_path):
+                os.unlink(full_path)
+            else:
+                os.rename(full_path, to_path)
             full_path = to_path
 
         for rm_prefix in rm_prefixes:

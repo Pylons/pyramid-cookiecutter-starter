@@ -1,6 +1,6 @@
 from {{ cookiecutter.repo_name }} import models
 
-def test_functional_my_view_success(testapp, dbsession):
+def test_my_view_success(testapp, dbsession):
     model = models.MyModel(name='one', value=55)
     dbsession.add(model)
     dbsession.flush()
