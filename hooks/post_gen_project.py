@@ -63,13 +63,14 @@ def delete_other_files(directory, current_prefix, rm_prefixes):
         if filename.startswith(base_prefix):
             filename = filename[len(base_prefix):]
             to_path = os.path.join(directory, filename)
-            os.rename(full_path, to_path)
+            if os.path.exists(to_path):
+                os.unlink(full_path)
+            else:
+                os.rename(full_path, to_path)
             full_path = to_path
 
         for rm_prefix in rm_prefixes:
-
             if filename.startswith(rm_prefix):
-
                 if os.path.isdir(full_path):
                     shutil.rmtree(full_path)
                 else:
@@ -77,7 +78,11 @@ def delete_other_files(directory, current_prefix, rm_prefixes):
 
             elif current_prefix and filename.startswith(current_prefix):
                 filename = filename[len(current_prefix):]
-                os.rename(full_path, os.path.join(directory, filename))
+                to_path = os.path.join(directory, filename)
+                # windows doesn't allow renaming to a file that already exists
+                if os.path.exists(to_path):
+                    os.unlink(to_path)
+                os.rename(full_path, to_path)
 
         if os.path.isdir(full_path):
             delete_other_files(full_path, current_prefix, rm_prefixes)
