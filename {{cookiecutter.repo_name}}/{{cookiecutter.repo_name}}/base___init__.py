@@ -16,14 +16,16 @@ def main(global_config, **settings):
     """
     with Configurator(settings=settings) as config:
         config.include('pyramid_{{ cookiecutter.template_language }}')
+    {%- if cookiecutter.backend == 'zodb' %}
+        config.include('pyramid_tm')
+        config.include('pyramid_retry')
+        config.include('pyramid_zodbconn')
+    {%- endif %}
         config.include('.routes')
     {%- if cookiecutter.backend == 'sqlalchemy' %}
         config.include('.models')
     {%- endif %}
     {%- if cookiecutter.backend == 'zodb' %}
-        config.include('pyramid_tm')
-        config.include('pyramid_retry')
-        config.include('pyramid_zodbconn')
         config.set_root_factory(root_factory)
     {%- endif %}
         config.scan()
