@@ -7,7 +7,6 @@ from pyramid.scripting import prepare
 from pyramid.testing import DummyRequest
 import pytest
 import transaction
-from webob.cookies import Cookie
 import webtest
 
 from {{ cookiecutter.repo_name }} import main
