@@ -135,12 +135,13 @@ def display_actions_message():
             %(pip_cmd)s install -e ".[testing]"
 
         {% if cookiecutter.backend == 'sqlalchemy' -%}
-        Migrate the database using Alembic.
+        Initialize and upgrade the database using Alembic.
             # Generate your first revision.
             %(alembic_cmd)s -c development.ini revision --autogenerate -m "init"
             # Upgrade to that revision.
             %(alembic_cmd)s -c development.ini upgrade head
-            # Load default data.
+
+        Load default data into the database using a script.
             %(init_cmd)s development.ini
 
         {% endif -%}
