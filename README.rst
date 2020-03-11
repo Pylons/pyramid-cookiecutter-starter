@@ -33,7 +33,7 @@ This cookiecutter has several branches to support new features in Pyramid or avo
 Usage
 -----
 
-1.  Generate a Pyramid project, following the prompts from the command.
+#.  Generate a Pyramid project, following the prompts from the command.
 
     .. code-block:: bash
 
@@ -45,9 +45,8 @@ Usage
 
         $ cookiecutter gh:Pylons/pyramid-cookiecutter-starter --checkout master
 
-2.  Create a virtual environment, upgrade packaging tools, and install your new project and its dependencies.
+#.  Create a virtual environment, upgrade packaging tools, and install your new project and its dependencies.
     These steps are output by the cookiecutter and are written to the file in ``<my_project>/README.txt``, and are slightly different for Windows.
-    If you select ``sqlalchemy`` as a backend, there will be additional steps in the output and ``README.txt``.
 
     .. code-block:: bash
 
@@ -60,13 +59,15 @@ Usage
         # Install the project in editable mode with its testing requirements.
         $ env/bin/pip install -e ".[testing]"
 
-3.  Run your project's tests.
+#.  If you selected ``sqlalchemy`` as a backend, there will be additional steps in the output and ``README.txt``.
+
+#.  Run your project's tests.
 
     .. code-block:: bash
 
         $ env/bin/pytest
 
-4.  Run your project.
+#.  Run your project.
 
     .. code-block:: bash
 
