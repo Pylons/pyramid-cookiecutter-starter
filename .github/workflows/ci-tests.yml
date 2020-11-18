@@ -35,6 +35,10 @@ jobs:
                       architecture: x86
                     - os: "macos-latest"
                       architecture: x86
+                    # macOS on Python 3.8 fails.
+                    # https://github.com/Pylons/pyramid-cookiecutter-starter/pull/94
+                    - os: "macos-latest"
+                      py: "3.8"
                     # PyPy3 on Windows doesn't seem to work
                     - os: "windows-latest"
                       py: "pypy3"
