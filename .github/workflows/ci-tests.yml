@@ -29,14 +29,6 @@ jobs:
                     - x64
                     - x86
 
-                include:
-                    # Only run coverage on ubuntu-latest, except on pypy3
-                    - os: "ubuntu-latest"
-                      pytest-args: "--cov"
-                    - os: "ubuntu-latest"
-                      py: "pypy3"
-                      pytest-args: ""
-
                 exclude:
                     # Linux and macOS don't have x86 python
                     - os: "ubuntu-latest"
