@@ -24,7 +24,7 @@ jobs:
                 os:
                     - "ubuntu-latest"
                     - "windows-latest"
-                    - "macos-latest"
+#                    - "macos-latest"
                 architecture:
                     - x64
                     - x86
@@ -33,8 +33,8 @@ jobs:
                     # Linux and macOS don't have x86 python
                     - os: "ubuntu-latest"
                       architecture: x86
-                    - os: "macos-latest"
-                      architecture: x86
+#                    - os: "macos-latest"
+#                      architecture: x86
                     # PyPy3 on Windows doesn't seem to work
                     - os: "windows-latest"
                       py: "pypy3"
