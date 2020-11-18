@@ -4,7 +4,8 @@
 Getting Started
 ---------------
 
-- Change directory into your newly created project.
+- Change directory into your newly created project if not already there. Your
+  current directory should be the same as this README.txt file and setup.py.
 
     cd {{ cookiecutter.repo_name }}
 
