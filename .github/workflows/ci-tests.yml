@@ -31,11 +31,13 @@ jobs:
                     - x86
 
                 exclude:
-                    # Linux and macOS don't have x86 python
+                    # Exclude unsupported Python/arch/platform combinations
                     - os: "ubuntu-latest"
                       architecture: x86
                     - os: "macos-latest"
                       architecture: x86
+                    - os: "macos-latest"
+                      py: "3.4"
                     # macOS on Python 3.8 fails.
                     # https://github.com/Pylons/pyramid-cookiecutter-starter/pull/94
                     - os: "macos-latest"
