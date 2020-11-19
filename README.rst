@@ -2,9 +2,9 @@
 pyramid-cookiecutter-starter
 ============================
 
-.. image:: https://travis-ci.org/Pylons/pyramid-cookiecutter-starter.png?branch=1.10-branch
-    :target: https://travis-ci.org/Pylons/pyramid-cookiecutter-starter
-    :alt: Master Travis CI Status
+.. image:: https://github.com/Pylons/pyramid-cookiecutter-starter/workflows/Build%20and%20test/badge.svg?branch=1.10-branch
+    :target: https://github.com/Pylons/pyramid-cookiecutter-starter/actions?query=branch%3A1.10-branch
+    :alt: 1.10-branch Branch Status
 
 A Cookiecutter (project template) for creating a Pyramid starter project.
 
