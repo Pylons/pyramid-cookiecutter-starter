@@ -21,7 +21,10 @@ jobs:
                     - "3.5"
                     - "3.6"
                     - "3.7"
+                    - "3.8"
+                    - "3.9"
                     - "pypy2"
+                    - "pypy3"
                 os:
                     - "ubuntu-latest"
                     - "windows-latest"
@@ -31,18 +34,24 @@ jobs:
                     - x86
 
                 exclude:
-                    # Exclude unsupported Python/arch/platform combinations
+                    # Exclude unsupported or non-working
+                    # Python/arch/platform combinations.
                     - os: "ubuntu-latest"
                       architecture: x86
                     - os: "macos-latest"
                       architecture: x86
                     - os: "macos-latest"
                       py: "3.4"
+                    - os: "windows-latest"
+                      py: "3.4"
+                    - os: "macos-latest"
+                      py: "pypy2"
                     # macOS on Python 3.8 fails.
                     # https://github.com/Pylons/pyramid-cookiecutter-starter/pull/94
                     - os: "macos-latest"
                       py: "3.8"
-                    # PyPy3 on Windows doesn't seem to work
+                    - os: "windows-latest"
+                      py: "pypy2"
                     - os: "windows-latest"
                       py: "pypy3"
 
