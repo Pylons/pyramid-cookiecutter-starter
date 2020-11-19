@@ -31,7 +31,8 @@ jobs:
                     - x86
 
                 exclude:
-                    # Exclude unsupported Python/arch/platform combinations
+                    # Exclude unsupported or non-working
+                    # Python/arch/platform combinations.
                     - os: "ubuntu-latest"
                       architecture: x86
                     - os: "macos-latest"
@@ -46,9 +47,8 @@ jobs:
                     # https://github.com/Pylons/pyramid-cookiecutter-starter/pull/94
                     - os: "macos-latest"
                       py: "3.8"
-                    # PyPy3 on Windows doesn't seem to work
                     - os: "windows-latest"
-                      py: "pypy3"
+                      py: "pypy2"
 
         name: "Python: ${{ matrix.py }}-${{ matrix.architecture }} on ${{ matrix.os }}"
         runs-on: ${{ matrix.os }}
