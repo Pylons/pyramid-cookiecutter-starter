@@ -2,9 +2,9 @@
 pyramid-cookiecutter-starter
 ============================
 
-.. image:: https://travis-ci.org/Pylons/pyramid-cookiecutter-starter.png?branch=master
-        :target: https://travis-ci.org/Pylons/pyramid-cookiecutter-starter
-        :alt: Master Travis CI Status
+.. image:: https://github.com/Pylons/pyramid-cookiecutter-starter/workflows/Build%20and%20test/badge.svg?branch=1.9-branch
+    :target: https://github.com/Pylons/pyramid-cookiecutter-starter/actions?query=branch%3A1.9-branch
+    :alt: 1.9-branch Branch Status
 
 A Cookiecutter (project template) for creating a Pyramid starter project using URL dispatch for routing and either Jinja2, Chameleon, or Mako for templating.
 
