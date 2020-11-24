@@ -9,7 +9,7 @@ Getting Started
 
     cd {{ cookiecutter.repo_name }}
 
-- Create a Python virtual environment.
+- Create a Python virtual environment, if not already created.
 
     python3 -m venv env
 
