@@ -12,7 +12,7 @@ Customizable options upon install include choice of:
 
 *   template language (Jinja2, Chameleon, or Mako)
 *   persistent backend (none, SQLAlchemy with SQLite, or ZODB)
-*   mapping of URLs to routes (if selected persistent backend is "none" or "sqlalchemy" then URL dispatch, and if "zodb" then traversal)
+*   mapping of URLs to routes (if the selected persistent backend is "none" or "sqlalchemy" then URL dispatch, or if "zodb" then traversal)
 
 Requirements
 ------------
@@ -46,13 +46,14 @@ Usage
         $ cookiecutter gh:Pylons/pyramid-cookiecutter-starter --checkout master
 
 #.  Create a virtual environment, upgrade packaging tools, and install your new project and its dependencies.
-    These steps are output by the cookiecutter and are written to the file in ``<my_project>/README.txt``, and are slightly different for Windows.
+    These steps are output to the console and are written to the file in ``<my_project>/README.txt`` by the cookiecutter, and are slightly different for Windows.
 
     .. code-block:: bash
 
-        # Change directory into your newly created project.
+        # Change directory into your newly created project if not already there. Your
+        # current directory should be the same as this README.txt file and setup.py.
         $ cd <my_project>
-        # Create a Python virtual environment.
+        # Create a Python virtual environment, if not already created.
         $ python3 -m venv env
         # Upgrade packaging tools.
         $ env/bin/pip install --upgrade pip setuptools
