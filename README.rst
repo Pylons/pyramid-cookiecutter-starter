@@ -2,7 +2,7 @@
 pyramid-cookiecutter-starter
 ============================
 
-.. image:: https://github.com/Pylons/pyramid-cookiecutter-starter/workflows/Build%20and%20test/badge.svg?branch=github-actions-master
+.. image:: https://github.com/Pylons/pyramid-cookiecutter-starter/workflows/Build%20and%20test/badge.svg?branch=master
     :target: https://github.com/Pylons/pyramid-cookiecutter-starter/actions?query=branch%3Amaster
     :alt: Master Status
 
