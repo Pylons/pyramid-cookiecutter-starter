@@ -102,7 +102,7 @@ def app_request(app, tm, dbsession):
     env['closer']()
 
 @pytest.fixture
-def dummy_request(app, tm, dbsession):
+def dummy_request(tm, dbsession):
     """
     A lightweight dummy request.
 
@@ -116,9 +116,19 @@ def dummy_request(app, tm, dbsession):
 
     """
     request = DummyRequest()
-    request.registry = app.registry
     request.host = 'example.com'
     request.dbsession = dbsession
     request.tm = tm
 
     return request
+
+@pytest.yield_fixture
+def dummy_config(dummy_request):
+    """
+    A dummy :class:`pyramid.config.Configurator` object.  This allows for
+    mock configuration, including configuration for ``dummy_request``, as well
+    as pushing the appropriate threadlocals.
+
+    """
+    with testConfig(request=dummy_request) as config:
+        yield config

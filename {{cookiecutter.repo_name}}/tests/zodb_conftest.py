@@ -82,3 +82,14 @@ def dummy_request(app, tm):
     request.tm = tm
 
     return request
+
+@pytest.yield_fixture
+def dummy_config(dummy_request):
+    """
+    A dummy :class:`pyramid.config.Configurator` object.  This allows for
+    mock configuration, including configuration for ``dummy_request``, as well
+    as pushing the appropriate threadlocals.
+
+    """
+    with testConfig(request=dummy_request) as config:
+        yield config
