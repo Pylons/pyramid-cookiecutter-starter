@@ -13,7 +13,7 @@ Getting Started
 
     python3 -m venv env
 
-- Upgrade packaging tools.
+- Upgrade packaging tools, if necessary.
 
     env/bin/pip install --upgrade pip setuptools
 
