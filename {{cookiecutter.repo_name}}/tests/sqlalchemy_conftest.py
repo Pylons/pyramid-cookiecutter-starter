@@ -4,7 +4,7 @@ import alembic.command
 import os
 from pyramid.paster import get_appsettings
 from pyramid.scripting import prepare
-from pyramid.testing import DummyRequest
+from pyramid.testing import DummyRequest, testConfig
 import pytest
 import transaction
 import webtest
