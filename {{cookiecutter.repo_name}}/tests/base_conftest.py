@@ -41,12 +41,10 @@ def app_request(app):
     drawbacks in tests as it's harder to mock data and is heavier.
 
     """
-    env = prepare(registry=app.registry)
-    request = env['request']
-    request.host = 'example.com'
-
-    yield request
-    env['closer']()
+    with prepare(registry=app.registry) as env:
+        request = env['request']
+        request.host = 'example.com'
+        yield request
 
 @pytest.fixture
 def dummy_request():

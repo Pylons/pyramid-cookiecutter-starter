@@ -88,18 +88,17 @@ def app_request(app, tm, dbsession):
     drawbacks in tests as it's harder to mock data and is heavier.
 
     """
-    env = prepare(registry=app.registry)
-    request = env['request']
-    request.host = 'example.com'
+    with prepare(registry=app.registry) as env:
+        request = env['request']
+        request.host = 'example.com'
 
-    # without this, request.dbsession will be joined to the same transaction
-    # manager but it will be using a different sqlalchemy.orm.Session using
-    # a separate database transaction
-    request.dbsession = dbsession
-    request.tm = tm
+        # without this, request.dbsession will be joined to the same transaction
+        # manager but it will be using a different sqlalchemy.orm.Session using
+        # a separate database transaction
+        request.dbsession = dbsession
+        request.tm = tm
 
-    yield request
-    env['closer']()
+        yield request
 
 @pytest.fixture
 def dummy_request(tm, dbsession):
