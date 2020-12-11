@@ -64,10 +64,9 @@ def dummy_request(tm):
     """
     A lightweight dummy request.
 
-    This request is ultra-lightweight and should be used only when the
-    request itself is not a large focus in the call-stack.
-
-    It is way easier to mock and control side-effects using this object.
+    This request is ultra-lightweight and should be used only when the request
+    itself is not a large focus in the call-stack.  It is much easier to mock
+    and control side-effects using this object, however:
 
     - It does not have request extensions applied.
     - Threadlocals are not properly pushed.
