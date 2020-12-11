@@ -49,7 +49,7 @@ def app_request(app):
     env['closer']()
 
 @pytest.fixture
-def dummy_request(app):
+def dummy_request():
     """
     A lightweight dummy request.
 
@@ -63,7 +63,6 @@ def dummy_request(app):
 
     """
     request = DummyRequest()
-    request.registry = app.registry
     request.host = 'example.com'
 
     return request
