@@ -122,7 +122,7 @@ def dummy_request(tm, dbsession):
 
     return request
 
-@pytest.yield_fixture
+@pytest.fixture
 def dummy_config(dummy_request):
     """
     A dummy :class:`pyramid.config.Configurator` object.  This allows for
