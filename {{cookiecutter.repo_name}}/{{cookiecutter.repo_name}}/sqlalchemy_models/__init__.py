@@ -35,6 +35,8 @@ def get_tm_session(session_factory, transaction_manager, request=None):
     - When using scripts you should wrap the session in a manager yourself.
       For example::
 
+          .. code-block:: python
+
           import transaction
 
           engine = get_engine(settings)
@@ -43,27 +45,32 @@ def get_tm_session(session_factory, transaction_manager, request=None):
               dbsession = get_tm_session(session_factory, transaction.manager)
 
     This function may be invoked with a ``request`` kwarg, such as when invoked
-    by the reified ``request.dbsession`` Pyramid Request attribute. The default
-    value, for backwards compatibility, is ``None``.
+    by the reified ``.dbsession`` Pyramid request attribute which is configured
+    via the ``includeme`` function below. The default value, for backwards
+    compatibility, is ``None``.
 
-    - The ``request`` kwarg is used to populate the SQLAlchmey Session's "info"
-      dict.  The "info" dict is the official namespace for developers to stash
-      Session-specific information.  For more information, please see the
-      SQLAlchemy docs:
-      https://docs.sqlalchemy.org/en/13/orm/session_api.html?#sqlalchemy.orm.session.Session.params.info
+    The ``request`` kwarg is used to populate the ``sqlalchemy.orm.Session``'s
+    "info" dict.  The "info" dict is the official namespace for developers to
+    stash session-specific information.  For more information, please see the
+    SQLAlchemy docs:
+    https://docs.sqlalchemy.org/en/13/orm/session_api.html?#sqlalchemy.orm.session.Session.params.info
 
-    - By placing the active Request in the "info" dict, developers will be able
-      to access the active Pyramid Request from an instance of a SQLAlchemy
-      object in one of two ways:
+    By placing the active ``request`` in the "info" dict, developers will be able
+    to access the active Pyramid request from an instance of a SQLAlchemy
+    object in one of two ways:
 
-    - Classic SQLAlchemy. This uses the Session's utility classmethod:
+    - Classic SQLAlchemy. This uses the ``Session``'s utility classmethod:
+
+        .. code-block:: python
 
         from sqlalchemy.orm.session import Session as sa_Session
 
         dbsession = sa_Session.object_session(dbObject)
         request = dbsession.info["request"]
 
-    - Modern SQLAlchemy. This uses the Runtime API:
+    - Modern SQLAlchemy. This uses the "Runtime Inspection API":
+
+        .. code-block:: python
 
         from sqlalchemy import inspect as sa_inspect
 
@@ -87,8 +94,9 @@ def includeme(config):
     settings['tm.manager_hook'] = 'pyramid_tm.explicit_manager'
 
     # use pyramid_tm to hook the transaction lifecycle to the request
-    # pyramid_tm and transaction will automatically close the database session
-    # if your project migrates away from pyramid_tm, you may need to use a
+    # Note: The packages ``pyramid_tm`` and ``transaction`` work together to
+    # automatically close the active database session after every request.
+    # If your project migrates away from ``pyramid_tm``, you may need to use a
     # Pyramid callback function to close the database session after each request.
     config.include('pyramid_tm')
 
