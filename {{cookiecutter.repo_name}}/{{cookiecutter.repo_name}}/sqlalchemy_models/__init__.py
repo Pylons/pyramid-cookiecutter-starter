@@ -35,14 +35,14 @@ def get_tm_session(session_factory, transaction_manager, request=None):
     - When using scripts you should wrap the session in a manager yourself.
       For example::
 
-          .. code-block:: python
+    .. code-block:: python
 
-          import transaction
+        import transaction
 
-          engine = get_engine(settings)
-          session_factory = get_session_factory(engine)
-          with transaction.manager:
-              dbsession = get_tm_session(session_factory, transaction.manager)
+        engine = get_engine(settings)
+        session_factory = get_session_factory(engine)
+        with transaction.manager:
+            dbsession = get_tm_session(session_factory, transaction.manager)
 
     This function may be invoked with a ``request`` kwarg, such as when invoked
     by the reified ``.dbsession`` Pyramid request attribute which is configured
@@ -61,7 +61,7 @@ def get_tm_session(session_factory, transaction_manager, request=None):
 
     - Classic SQLAlchemy. This uses the ``Session``'s utility classmethod:
 
-        .. code-block:: python
+    .. code-block:: python
 
         from sqlalchemy.orm.session import Session as sa_Session
 
@@ -70,7 +70,7 @@ def get_tm_session(session_factory, transaction_manager, request=None):
 
     - Modern SQLAlchemy. This uses the "Runtime Inspection API":
 
-        .. code-block:: python
+    .. code-block:: python
 
         from sqlalchemy import inspect as sa_inspect
 
