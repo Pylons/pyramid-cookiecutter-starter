@@ -37,6 +37,8 @@ unreleased
   inheriting the color of white.
   See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/64
 
+- Extend SQLAlchemy starter to track the current Pyramid Request. Improve some
+  inline docs for SQLAlchemy.
 
 1.10 (2018-10-05)
 -----------------
