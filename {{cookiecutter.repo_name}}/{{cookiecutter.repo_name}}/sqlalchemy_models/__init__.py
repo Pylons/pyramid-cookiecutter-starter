@@ -33,16 +33,16 @@ def get_tm_session(session_factory, transaction_manager, request=None):
       depending on whether an exception is raised.
 
     - When using scripts you should wrap the session in a manager yourself.
-      For example::
+      For example:
 
-    .. code-block:: python
+      .. code-block:: python
 
-        import transaction
+          import transaction
 
-        engine = get_engine(settings)
-        session_factory = get_session_factory(engine)
-        with transaction.manager:
-            dbsession = get_tm_session(session_factory, transaction.manager)
+          engine = get_engine(settings)
+          session_factory = get_session_factory(engine)
+          with transaction.manager:
+              dbsession = get_tm_session(session_factory, transaction.manager)
 
     This function may be invoked with a ``request`` kwarg, such as when invoked
     by the reified ``.dbsession`` Pyramid request attribute which is configured
@@ -53,7 +53,7 @@ def get_tm_session(session_factory, transaction_manager, request=None):
     "info" dict.  The "info" dict is the official namespace for developers to
     stash session-specific information.  For more information, please see the
     SQLAlchemy docs:
-    https://docs.sqlalchemy.org/en/13/orm/session_api.html?#sqlalchemy.orm.session.Session.params.info
+    https://docs.sqlalchemy.org/en/stable/orm/session_api.html?#sqlalchemy.orm.session.Session.params.info
 
     By placing the active ``request`` in the "info" dict, developers will be able
     to access the active Pyramid request from an instance of a SQLAlchemy
@@ -61,21 +61,21 @@ def get_tm_session(session_factory, transaction_manager, request=None):
 
     - Classic SQLAlchemy. This uses the ``Session``'s utility classmethod:
 
-    .. code-block:: python
+      .. code-block:: python
 
-        from sqlalchemy.orm.session import Session as sa_Session
+          from sqlalchemy.orm.session import Session as sa_Session
 
-        dbsession = sa_Session.object_session(dbObject)
-        request = dbsession.info["request"]
+          dbsession = sa_Session.object_session(dbObject)
+          request = dbsession.info["request"]
 
     - Modern SQLAlchemy. This uses the "Runtime Inspection API":
 
-    .. code-block:: python
+      .. code-block:: python
 
-        from sqlalchemy import inspect as sa_inspect
+          from sqlalchemy import inspect as sa_inspect
 
-        dbsession = sa_inspect(dbObject).session
-        request = dbsession.info["request"]
+          dbsession = sa_inspect(dbObject).session
+          request = dbsession.info["request"]
     """
     dbsession = session_factory(info={"request": request})
     zope.sqlalchemy.register(
