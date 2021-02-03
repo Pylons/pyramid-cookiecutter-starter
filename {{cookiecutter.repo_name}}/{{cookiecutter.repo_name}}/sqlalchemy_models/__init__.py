@@ -3,12 +3,12 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import configure_mappers
 import zope.sqlalchemy
 
-# import or define all models here to ensure they are attached to the
-# Base.metadata prior to any initialization routines
+# Import or define all models here to ensure they are attached to the
+# ``Base.metadata`` prior to any initialization routines.
 from .mymodel import MyModel  # flake8: noqa
 
-# run configure_mappers after defining all of the models to ensure
-# all relationships can be setup
+# Run ``configure_mappers`` after defining all of the models to ensure
+# all relationships can be setup.
 configure_mappers()
 
 
@@ -55,11 +55,11 @@ def get_tm_session(session_factory, transaction_manager, request=None):
     SQLAlchemy docs:
     https://docs.sqlalchemy.org/en/stable/orm/session_api.html#sqlalchemy.orm.session.Session.params.info
 
-    By placing the active ``request`` in the "info" dict, developers will be able
-    to access the active Pyramid request from an instance of a SQLAlchemy
+    By placing the active ``request`` in the "info" dict, developers will be
+    able to access the active Pyramid request from an instance of an SQLAlchemy
     object in one of two ways:
 
-    - Classic SQLAlchemy. This uses the ``Session``'s utility classmethod:
+    - Classic SQLAlchemy. This uses the ``Session``'s utility class method:
 
       .. code-block:: python
 
@@ -79,7 +79,8 @@ def get_tm_session(session_factory, transaction_manager, request=None):
     """
     dbsession = session_factory(info={"request": request})
     zope.sqlalchemy.register(
-        dbsession, transaction_manager=transaction_manager)
+        dbsession, transaction_manager=transaction_manager
+    )
     return dbsession
 
 
@@ -87,17 +88,18 @@ def includeme(config):
     """
     Initialize the model for a Pyramid app.
 
-    Activate this setup using ``config.include('{{ cookiecutter.repo_name }}.models')``.
+    Activate this setup using ``config.include('sqla_demo.models')``.
 
     """
     settings = config.get_settings()
     settings['tm.manager_hook'] = 'pyramid_tm.explicit_manager'
 
-    # use pyramid_tm to hook the transaction lifecycle to the request
-    # Note: The packages ``pyramid_tm`` and ``transaction`` work together to
+    # Use ``pyramid_tm`` to hook the transaction lifecycle to the request.
+    # Note: the packages ``pyramid_tm`` and ``transaction`` work together to
     # automatically close the active database session after every request.
     # If your project migrates away from ``pyramid_tm``, you may need to use a
-    # Pyramid callback function to close the database session after each request.
+    # Pyramid callback function to close the database session after each
+    # request.
     config.include('pyramid_tm')
 
     # use pyramid_retry to retry a request when transient exceptions occur
@@ -117,7 +119,9 @@ def includeme(config):
         dbsession = request.environ.get('app.dbsession')
         if dbsession is None:
             # request.tm is the transaction manager used by pyramid_tm
-            dbsession = get_tm_session(session_factory, request.tm, request=request)
+            dbsession = get_tm_session(
+                session_factory, request.tm, request=request
+            )
         return dbsession
 
     config.add_request_method(dbsession, reify=True)
