@@ -1,5 +1,5 @@
-unreleased
-----------
+2.0 (2021-02-28)
+----------------
 
 - Remove omit line that is no longer needed after moving tests.
   See https://github.com/Pylons/pyramid-cookiecutter-starter/issues/82
