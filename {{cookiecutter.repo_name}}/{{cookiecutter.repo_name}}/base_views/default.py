@@ -1,30 +1,28 @@
 from pyramid.view import view_config
 
-
 {%- if cookiecutter.backend == 'zodb' %}
 
 from ..models import MyModel
 
 
-@view_config(context=MyModel, renderer='../templates/mytemplate.{{ "pt" if "chameleon" == cookiecutter.template_language else cookiecutter.template_language }}')
+@view_config(context=MyModel, renderer='{{ cookiecutter.repo_name }}:templates/mytemplate.{{ "pt" if "chameleon" == cookiecutter.template_language else cookiecutter.template_language }}')
 def my_view(request):
     return {'project': '{{ cookiecutter.project_name }}'}
 
 
 {%- elif cookiecutter.backend == 'sqlalchemy' %}
 from pyramid.response import Response
-
-from sqlalchemy.exc import DBAPIError
+from sqlalchemy.exc import SQLAlchemyError
 
 from .. import models
 
 
-@view_config(route_name='home', renderer='../templates/mytemplate.{{ "pt" if "chameleon" == cookiecutter.template_language else cookiecutter.template_language }}')
+@view_config(route_name='home', renderer='{{ cookiecutter.repo_name }}:templates/mytemplate.{{ "pt" if "chameleon" == cookiecutter.template_language else cookiecutter.template_language }}')
 def my_view(request):
     try:
         query = request.dbsession.query(models.MyModel)
-        one = query.filter(models.MyModel.name == 'one').first()
-    except DBAPIError:
+        one = query.filter(models.MyModel.name == 'one').one()
+    except SQLAlchemyError:
         return Response(db_err_msg, content_type='text/plain', status=500)
     return {'one': one, 'project': '{{ cookiecutter.project_name }}'}
 
@@ -48,7 +46,7 @@ try it again.
 {%- elif cookiecutter.backend == 'none' %}
 
 
-@view_config(route_name='home', renderer='../templates/mytemplate.{{ "pt" if "chameleon" == cookiecutter.template_language else cookiecutter.template_language }}')
+@view_config(route_name='home', renderer='{{ cookiecutter.repo_name }}:templates/mytemplate.{{ "pt" if "chameleon" == cookiecutter.template_language else cookiecutter.template_language }}')
 def my_view(request):
     return {'project': '{{ cookiecutter.project_name }}'}
 

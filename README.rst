@@ -17,7 +17,7 @@ Customizable options upon install include choice of:
 Requirements
 ------------
 
-*   Python 2.7 or 3.4+
+*   Python 3.6+
 *   `cookiecutter <https://cookiecutter.readthedocs.io/en/latest/installation.html>`_
 
 Versions
@@ -59,6 +59,10 @@ Usage
         $ env/bin/pip install --upgrade pip setuptools
         # Install the project in editable mode with its testing requirements.
         $ env/bin/pip install -e ".[testing]"
+        # The previous step installs the latest stable release of Pyramid.
+        # Optionally install a specific version of Pyramid.
+        # For example, the unreleased version of the master branch:
+        env/bin/pip install -e git+https://github.com/pylons/pyramid.git@master#egg=pyramid
 
 #.  If you selected ``sqlalchemy`` as a backend, there will be additional steps in the output and ``README.txt``.
 

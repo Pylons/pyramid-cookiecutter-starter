@@ -124,3 +124,7 @@ Contributors
 - Marcin Lulek (@ergo), 2018-08-21
 
 - Stephen Martin, 2018-09-18
+
+- Julien Cigar, 2019-10-18
+
+- Jonathan Vanasco, 2021-01-27

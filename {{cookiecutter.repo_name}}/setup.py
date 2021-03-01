@@ -26,13 +26,13 @@ requires = [
     'pyramid_tm',
     'pyramid_zodbconn',
     'transaction',
-    'ZODB3',
+    'ZODB',
     {%- endif %}
 ]
 
 tests_require = [
-    'WebTest >= 1.3.1',  # py3 compat
-    'pytest >= 3.7.4',
+    'WebTest',
+    'pytest',
     'pytest-cov',
 ]
 
@@ -51,7 +51,7 @@ setup(
     author_email='',
     url='',
     keywords='web pyramid pylons',
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests']),
     include_package_data=True,
     zip_safe=False,
     extras_require={
