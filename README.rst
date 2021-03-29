@@ -2,9 +2,9 @@
 pyramid-cookiecutter-starter
 ============================
 
-.. image:: https://github.com/Pylons/pyramid-cookiecutter-starter/workflows/Build%20and%20test/badge.svg?branch=latest
-    :target: https://github.com/Pylons/pyramid-cookiecutter-starter/actions?query=branch%3Alatest
-    :alt: Latest Branch Status
+.. image:: https://github.com/Pylons/pyramid-cookiecutter-starter/workflows/Build%20and%20test/badge.svg?branch=master
+    :target: https://github.com/Pylons/pyramid-cookiecutter-starter/actions?query=branch%3Amaster
+    :alt: Master Branch Status
 
 A Cookiecutter (project template) for creating a Pyramid starter project.
 
