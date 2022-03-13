@@ -19,6 +19,7 @@ You can contribute to this project in several ways.
 *   For development, create a new branch.
     If changes on your new branch are accepted, they will be merged into the master branch and deployed.
 
+
 ## Prerequisites
 
 Follow the instructions in [README.rst](https://github.com/Pylons/pyramid-cookiecutter-starter) to install the tools needed to run the project.
