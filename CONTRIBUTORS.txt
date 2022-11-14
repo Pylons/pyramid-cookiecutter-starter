@@ -126,3 +126,5 @@ Contributors
 - Stephen Martin, 2018-09-18
 
 - Julien Cigar, 2019-10-18
+
+- Jonathan Vanasco (@jvanasco), 2022-11-14

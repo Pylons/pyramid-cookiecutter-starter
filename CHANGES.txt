@@ -37,6 +37,8 @@ unreleased
   inheriting the color of white.
   See https://github.com/Pylons/pyramid-cookiecutter-starter/pull/64
 
+- Rename "master" branch to "main".
+  See https://github.com/Pylons/pyramid/issues/3712
 
 1.10 (2018-10-05)
 -----------------
