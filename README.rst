@@ -2,9 +2,9 @@
 pyramid-cookiecutter-starter
 ============================
 
-.. image:: https://github.com/Pylons/pyramid-cookiecutter-starter/workflows/Build%20and%20test/badge.svg?branch=master
-    :target: https://github.com/Pylons/pyramid-cookiecutter-starter/actions?query=branch%3Amaster
-    :alt: Master Branch Status
+.. image:: https://github.com/Pylons/pyramid-cookiecutter-starter/workflows/Build%20and%20test/badge.svg?branch=main
+    :target: https://github.com/Pylons/pyramid-cookiecutter-starter/actions?query=branch%3Amain
+    :alt: Main Branch Status
 
 A Cookiecutter (project template) for creating a Pyramid starter project.
 
@@ -26,7 +26,7 @@ Versions
 This cookiecutter has several branches to support new features in Pyramid or avoid incompatibilities.
 
 *   ``latest`` aligns with the latest stable release of Pyramid, and is the default branch on GitHub.
-*   ``master`` aligns with the ``master`` branch of Pyramid, and is where development takes place.
+*   ``main`` aligns with the ``main`` branch of Pyramid, and is where development takes place.
 *   ``x.y-branch`` aligns with the ``x.y-branch`` branch of Pyramid.
 
 
@@ -43,7 +43,7 @@ Usage
 
     .. code-block:: bash
 
-        $ cookiecutter gh:Pylons/pyramid-cookiecutter-starter --checkout master
+        $ cookiecutter gh:Pylons/pyramid-cookiecutter-starter --checkout main
 
 #.  Create a virtual environment, upgrade packaging tools, and install your new project and its dependencies.
     These steps are output to the console and are written to the file in ``<my_project>/README.txt`` by the cookiecutter, and are slightly different for Windows.
@@ -61,8 +61,8 @@ Usage
         $ env/bin/pip install -e ".[testing]"
         # The previous step installs the latest stable release of Pyramid.
         # Optionally install a specific version of Pyramid.
-        # For example, the unreleased version of the master branch:
-        env/bin/pip install -e git+https://github.com/pylons/pyramid.git@master#egg=pyramid
+        # For example, the unreleased version of the main branch:
+        env/bin/pip install -e git+https://github.com/pylons/pyramid.git@main#egg=pyramid
 
 #.  If you selected ``sqlalchemy`` as a backend, there will be additional steps in the output and ``README.txt``.
 
