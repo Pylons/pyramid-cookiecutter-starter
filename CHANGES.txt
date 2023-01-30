@@ -1,3 +1,12 @@
+unreleased
+----------
+
+- Fix deprecation warnings from pytest-cookies.
+
+- Fix missing interpolation in SQLAlchemy model.
+
+- Use fork of pytest-cookies to fix tests on windows.
+
 2.0 (2021-02-28)
 ----------------
 
