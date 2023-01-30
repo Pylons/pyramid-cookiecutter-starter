@@ -41,7 +41,7 @@ jobs:
                     - os: "macos-latest"
                       py: "3.8"
                     # PyPy3 on Windows doesn't seem to work
-                    - os: "windows-2022"
+                    - os: "windows-latest"
                       py: "pypy-3.8"
 
         name: "Python: ${{ matrix.py }}-${{ matrix.architecture }} on ${{ matrix.os }}"

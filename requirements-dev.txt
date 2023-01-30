@@ -1,4 +1,5 @@
-cookiecutter
+cookiecutter < 2.0 ; python_version < "3.7"
+cookiecutter ; python_version >= "3.7"
 pytest
 # the default pytest-cookies is currently broken on windows
 # https://github.com/hackebrot/pytest-cookies/issues/41#issuecomment-1316992381
