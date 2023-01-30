@@ -3,5 +3,6 @@ cookiecutter ; python_version >= "3.7"
 pytest
 # the default pytest-cookies is currently broken on windows
 # https://github.com/hackebrot/pytest-cookies/issues/41#issuecomment-1316992381
-git+https://github.com/jamesmyatt/pytest-cookies@bugfix/62#egg=pytest-cookies
+git+https://github.com/jamesmyatt/pytest-cookies@bugfix/62#egg=pytest-cookies ; python_version >= "3.7"
+pytest-cookies == 0.5.1 ; python_version < "3.7"
 pytest-venv
