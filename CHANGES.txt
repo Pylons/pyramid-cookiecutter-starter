@@ -1,6 +1,9 @@
 unreleased
 ----------
 
+- Fix unwanted literal inclusion of a METAL attribute in rendered output within
+  the Chameleon ``layout.pt`` template.
+  
 - Fix deprecation warnings from pytest-cookies.
 
 - Fix missing interpolation in SQLAlchemy model.
