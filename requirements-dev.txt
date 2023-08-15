@@ -1,6 +1,4 @@
 cookiecutter
 pytest
-# the default pytest-cookies is currently broken on windows
-# https://github.com/hackebrot/pytest-cookies/issues/41#issuecomment-1316992381
-git+https://github.com/jamesmyatt/pytest-cookies@bugfix/62#egg=pytest-cookies
+pytest-cookies
 pytest-venv
