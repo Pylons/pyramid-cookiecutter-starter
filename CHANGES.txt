@@ -1,3 +1,11 @@
+2.0.2 (2023-08-24)
+------------------
+
+- Fix unwanted literal inclusion of a METAL attribute in rendered output within
+  the Chameleon ``layout.pt`` template.
+
+- Remove unnecessary fork of pytext-cookies.
+
 2.0.1 (2023-01-29)
 ------------------
 
