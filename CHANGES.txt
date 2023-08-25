@@ -10,7 +10,7 @@
 ------------------
 
 - Add support for Python 3.10, and 3.11.
-  
+
 - Fix deprecation warnings from pytest-cookies.
 
 - Fix missing interpolation in SQLAlchemy model.
