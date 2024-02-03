@@ -3,10 +3,14 @@ unreleased
 
 - Fix unwanted literal inclusion of a METAL attribute in rendered output within
   the Chameleon ``layout.pt`` template.
-  
+
 - Fix deprecation warnings from pytest-cookies.
 
 - Fix missing interpolation in SQLAlchemy model.
+
+- Fix location of wsgi server comments in ini files.
+
+- Update to use ``pyproject.toml`` instead of ``setup.py`` for project metadata.
 
 2.0 (2021-02-28)
 ----------------
