@@ -12,7 +12,7 @@ def my_view(request):
 
 {%- elif cookiecutter.backend == 'sqlalchemy' %}
 from pyramid.response import Response
-from sqlalchemy.exc import SQLAlchemyError
+import sqlalchemy as sa
 
 from .. import models
 
@@ -20,9 +20,9 @@ from .. import models
 @view_config(route_name='home', renderer='{{ cookiecutter.repo_name }}:templates/mytemplate.{{ "pt" if "chameleon" == cookiecutter.template_language else cookiecutter.template_language }}')
 def my_view(request):
     try:
-        query = request.dbsession.query(models.MyModel)
-        one = query.filter(models.MyModel.name == 'one').one()
-    except SQLAlchemyError:
+        query = sa.select(models.MyModel).where(models.MyModel.name == 'one')
+        one = request.dbsession.execute(query).scalar_one()
+    except sa.exc.SQLAlchemyError:
         return Response(db_err_msg, content_type='text/plain', status=500)
     return {'one': one, 'project': '{{ cookiecutter.project_name }}'}
 
