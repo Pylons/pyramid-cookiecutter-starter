@@ -129,7 +129,7 @@ def display_actions_message():
             %(venv_cmd)s %(venv)s
 
         Upgrade packaging tools.
-            %(pip_cmd)s install --upgrade pip setuptools
+            %(pip_cmd)s install --upgrade pip
 
         Install the project in editable mode with its testing requirements.
             %(pip_cmd)s install -e ".[testing]"
