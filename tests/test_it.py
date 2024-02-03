@@ -8,7 +8,6 @@ WIN = sys.platform == 'win32'
 WORKING = os.path.abspath(os.path.join(os.path.curdir))
 
 base_files = [
-    '.coveragerc',
     '.gitignore',
     '/myapp/__init__.py',
     '/myapp/routes.py',
@@ -25,18 +24,15 @@ base_files = [
     '/tests/conftest.py',
     '/tests/test_functional.py',
     '/tests/test_views.py',
-    'CHANGES.txt',
     'MANIFEST.in',
-    'README.txt',
+    'README.md',
     'development.ini',
     'production.ini',
-    'pytest.ini',
-    'setup.py',
+    'pyproject.toml',
     'testing.ini',
 ]
 
 sqlalchemy_files = [
-    '.coveragerc',
     '.gitignore',
     '/myapp/__init__.py',
     '/myapp/alembic/env.py',
@@ -62,18 +58,15 @@ sqlalchemy_files = [
     '/tests/conftest.py',
     '/tests/test_functional.py',
     '/tests/test_views.py',
-    'CHANGES.txt',
     'MANIFEST.in',
-    'README.txt',
+    'README.md',
     'development.ini',
     'production.ini',
-    'pytest.ini',
-    'setup.py',
+    'pyproject.toml',
     'testing.ini',
 ]
 
 zodb_files = [
-    '.coveragerc',
     '.gitignore',
     '/myapp/__init__.py',
     '/myapp/models/__init__.py',
@@ -92,13 +85,11 @@ zodb_files = [
     '/tests/conftest.py',
     '/tests/test_functional.py',
     '/tests/test_views.py',
-    'CHANGES.txt',
     'MANIFEST.in',
-    'README.txt',
+    'README.md',
     'development.ini',
     'production.ini',
-    'pytest.ini',
-    'setup.py',
+    'pyproject.toml',
     'testing.ini',
 ]
 

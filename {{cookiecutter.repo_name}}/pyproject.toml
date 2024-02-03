@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+version = "0.0"
+name = "{{ cookiecutter.repo_name }}"
+authors = []
+description = "{{ cookiecutter.project_name }}"
+readme = "README.md"
+keywords = ["web", "pyramid", "pylons"]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Framework :: Pyramid",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "plaster_pastedeploy",
+    "pyramid",
+    "pyramid_{{ cookiecutter.template_language }}",
+    "pyramid_debugtoolbar",
+    "waitress",
+    {%- if cookiecutter.backend == "sqlalchemy" %}
+    "alembic",
+    "pyramid_retry",
+    "pyramid_tm",
+    "SQLAlchemy",
+    "transaction",
+    "zope.sqlalchemy",
+    {%- elif cookiecutter.backend == "zodb" %}
+    "pyramid_retry",
+    "pyramid_tm",
+    "pyramid_zodbconn",
+    "transaction",
+    "ZODB",
+    {%- endif %}
+]
+
+[project.optional-dependencies]
+testing = [
+    "WebTest",
+    "pytest",
+    "pytest-cov",
+]
+{% if cookiecutter.backend == 'sqlalchemy' %}
+[project.scripts]
+initialize_{{ cookiecutter.repo_name }}_db = "{{ cookiecutter.repo_name }}.scripts.initialize_db:main"
+{% endif %}
+[project.entry-points."paste.app_factory"]
+main = "{{ cookiecutter.repo_name }}:main"
+
+[tool.setuptools.packages.find]
+exclude = ["tests"]
+
+[tool.coverage.run]
+source = "{{ cookiecutter.repo_name }}"
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers"
+testpaths = [
+    "{{ cookiecutter.repo_name }}",
+    "tests",
+]
