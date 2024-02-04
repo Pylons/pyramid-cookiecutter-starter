@@ -12,6 +12,8 @@ unreleased
 
 - Use ``pyproject.toml`` instead of ``setup.py`` for project metadata.
 
+- Use SQLAlchemy 2.0 patterns.
+
 2.0 (2021-02-28)
 ----------------
 
