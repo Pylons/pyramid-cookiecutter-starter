@@ -7,9 +7,9 @@ from .meta import Base
 
 class MyModel(Base):
     __tablename__ = 'models'
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    name: Mapped[Optional[str]] = mapped_column(Text)
-    value: Mapped[Optional[int]] = mapped_column(Integer)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[Optional[str]]
+    value: Mapped[Optional[int]]
 
 
 Index('my_index', MyModel.name, unique=True, mysql_length=255)
