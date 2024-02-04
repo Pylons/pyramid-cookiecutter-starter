@@ -56,7 +56,9 @@ main = "{{ cookiecutter.repo_name }}:main"
 exclude = ["tests"]
 
 [tool.coverage.run]
-source = "{{ cookiecutter.repo_name }}"
+source = [
+    "{{ cookiecutter.repo_name }}",
+]
 
 [tool.pytest.ini_options]
 addopts = "--strict-markers"
