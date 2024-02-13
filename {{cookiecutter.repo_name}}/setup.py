@@ -18,7 +18,7 @@ requires = [
     'alembic',
     'pyramid_retry',
     'pyramid_tm',
-    'SQLAlchemy',
+    'SQLAlchemy<2',
     'transaction',
     'zope.sqlalchemy',
     {%- elif cookiecutter.backend == 'zodb' %}
