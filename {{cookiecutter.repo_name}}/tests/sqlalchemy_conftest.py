@@ -32,7 +32,7 @@ def dbengine(app_settings, ini_file):
 
     alembic_cfg = alembic.config.Config(ini_file)
     Base.metadata.drop_all(bind=engine)
-    alembic.command.stamp(alembic_cfg, None, purge=True)
+    alembic.command.stamp(alembic_cfg, 'base', purge=True)
 
     # run migrations to initialize the database
     # depending on how we want to initialize the database from scratch
@@ -44,7 +44,7 @@ def dbengine(app_settings, ini_file):
     yield engine
 
     Base.metadata.drop_all(bind=engine)
-    alembic.command.stamp(alembic_cfg, None, purge=True)
+    alembic.command.stamp(alembic_cfg, 'base', purge=True)
 
 @pytest.fixture(scope='session')
 def app(app_settings, dbengine):
