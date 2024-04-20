@@ -2,6 +2,7 @@ import alembic
 import alembic.config
 import alembic.command
 import os
+import plaster
 from pyramid.paster import get_appsettings
 from pyramid.scripting import prepare
 from pyramid.testing import DummyRequest, testConfig
@@ -15,22 +16,29 @@ from {{ cookiecutter.repo_name }}.models.meta import Base
 
 
 def pytest_addoption(parser):
+    {%- if cookiecutter.configuration_file_type == 'ini' %}
     parser.addoption('--ini', action='store', metavar='INI_FILE')
+    {%- else %}
+    parser.addoption('--yaml', action='store', metavar='YAML_FILE')
+    {%- endif %}    
 
 @pytest.fixture(scope='session')
-def ini_file(request):
+def {{ cookiecutter.configuration_file_type }}_file(request):
     # potentially grab this path from a pytest option
-    return os.path.abspath(request.config.option.ini or 'testing.ini')
+    return os.path.abspath(request.config.option.{{ cookiecutter.configuration_file_type }} or 'testing.{{ cookiecutter.configuration_file_type }}')
 
 @pytest.fixture(scope='session')
-def app_settings(ini_file):
-    return get_appsettings(ini_file)
+def app_settings({{ cookiecutter.configuration_file_type }}_file):
+    return get_appsettings({{ cookiecutter.configuration_file_type }}_file)
 
+{% set conf_file = (
+           'testing.ini' if cookiecutter.configuration_file_type == 'ini'
+           else 'alembic_testing.ini' ) -%}
 @pytest.fixture(scope='session')
-def dbengine(app_settings, ini_file):
+def dbengine(app_settings):
     engine = models.get_engine(app_settings)
 
-    alembic_cfg = alembic.config.Config(ini_file)
+    alembic_cfg = alembic.config.Config('{{ conf_file }}')
     Base.metadata.drop_all(bind=engine)
     alembic.command.stamp(alembic_cfg, 'base', purge=True)
 

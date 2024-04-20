@@ -1,0 +1,81 @@
+---
+###
+# app configuration
+# http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/environment.html
+###
+app:
+  use: "egg:{{ cookiecutter.repo_name }}"
+
+  # Pyramid settings; run in development mode
+  pyramid.reload_templates: false
+  pyramid.debug_authorization: false
+  pyramid.debug_notfound: false
+  pyramid.debug_routematch: false
+  pyramid.default_locale_name: "en"
+
+{%- if cookiecutter.backend == 'sqlalchemy' %}
+
+  sqlalchemy.url: "sqlite:///{{ cookiecutter.repo_name }}.sqlite"
+{%- elif cookiecutter.backend == 'zodb' %}
+
+  zodbconn.uri: "file://Data.fs?connection_cache_size=20000"
+{%- endif -%}
+
+{%- if cookiecutter.backend == 'sqlalchemy' or cookiecutter.backend == 'zodb' %}
+
+  retry.attempts: "3"
+
+pshell:
+  setup: "{{ cookiecutter.repo_name }}.pshell.setup"
+{%- endif %}
+{%- if cookiecutter.backend == 'sqlalchemy' %}
+
+alembic:
+  # path to migration scripts
+  script_location: "{{ cookiecutter.repo_name }}/alembic"
+  file_template: "%%(year)d%%(month).2d%%(day).2d_%%(rev)s"
+  # file_template: "%%(rev)s_%%(slug)s"
+
+{%- endif %}
+
+server:
+  use: "egg:waitress#main"
+  listen: "*:6543"
+
+###
+# logging configuration
+# https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/logging.html
+# https://docs.python.org/3/library/logging.config.html#dictionary-schema-details
+###
+logging:
+  version: 1
+  disable_existing_loggers: false
+  formatters:
+    generic:
+      format: >-
+        %(asctime)s %(levelname)-5.5s
+        [%(name)s:%(lineno)s][%(threadName)s] %(message)s
+  handlers:
+    console:
+      class: logging.StreamHandler
+      stream: ext://sys.stderr
+      formatter: generic
+  root:
+    level: WARN
+    handlers:
+      - console
+  loggers:
+    logger_{{ cookiecutter.repo_name }}:
+      level: WARN
+      qualname: "{{ cookiecutter.repo_name }}"
+{%- if cookiecutter.backend == 'sqlalchemy' %}
+    logger_sqlalchemy:
+      # level: INFO      # logs SQL queries.
+      # level: DEBUG     # logs SQL queries and results.
+      # level: WARN      # logs neither.  (Recommended for production systems.)
+      level: WARN
+      qualname: sqlalchemy.engine
+    logger_alembic:
+      level: WARN
+      qualname: alembic
+{%- endif %}

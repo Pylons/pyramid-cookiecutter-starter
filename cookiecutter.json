@@ -1,6 +1,7 @@
 {
     "project_name": "Pyramid Scaffold",
     "repo_name": "{{cookiecutter.project_name.lower().strip().replace(' ', '_').replace(':', '_').replace('-', '_').replace('!', '_')}}",
+    "configuration_file_type": ["ini", "yaml"],
     "template_language": ["jinja2", "chameleon", "mako"],
     "backend": ["none", "sqlalchemy", "zodb"],
     "_copy_without_render": [
