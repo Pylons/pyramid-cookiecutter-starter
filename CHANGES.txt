@@ -1,6 +1,10 @@
 unreleased
 ----------
 
+- Drop Python 3.8, and 3.9 support.
+
+- Add Python 3.12, 3.13, and 3.14 support.
+
 - Fix unwanted literal inclusion of a METAL attribute in rendered output within
   the Chameleon ``layout.pt`` template.
 

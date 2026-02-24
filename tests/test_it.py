@@ -142,6 +142,9 @@ def test_base(cookies, venv, capfd, template):
 
     cwd = str(result.project_path)
 
+    # constraint setuptools < 82
+    venv.install('setuptools < 82')
+
     # this is a hook for executing scaffold tests against a specific
     # version of pyramid (or a local checkout on disk)
     if 'OVERRIDE_PYRAMID' in os.environ:  # pragma: no cover
@@ -187,6 +190,9 @@ def test_zodb(cookies, venv, capfd, template):
     assert zodb_files == files
 
     cwd = str(result.project_path)
+
+    # constraint setuptools < 82
+    venv.install('setuptools < 82')
 
     # this is a hook for executing scaffold tests against a specific
     # version of pyramid (or a local checkout on disk)
@@ -234,6 +240,9 @@ def test_sqlalchemy(cookies, venv, capfd, template):
     assert sqlalchemy_files == files
 
     cwd = str(result.project_path)
+
+    # constraint setuptools < 82
+    venv.install('setuptools < 82')
 
     # this is a hook for executing scaffold tests against a specific
     # version of pyramid (or a local checkout on disk)
