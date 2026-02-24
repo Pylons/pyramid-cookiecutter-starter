@@ -16,40 +16,44 @@ jobs:
         strategy:
             matrix:
                 py:
-                    - "3.8"
-                    - "3.9"
                     - "3.10"
                     - "3.11"
                     - "3.12"
-                    - "pypy-3.8"
+                    - "3.13"
+                    - "3.14"
+                    - "pypy-3.10"
                 os:
-                    - "ubuntu-latest"
-                    - "windows-latest"
-                    - "macos-latest"
+                    - "ubuntu-24.04"
+                    - "windows-2022"
+                    - "macos-15"
+                    - "macos-15-intel"
                 architecture:
                     - x64
-                    - x86
-
+                    - arm64
                 exclude:
-                    # Linux and macOS don't have x86 python
-                    - os: "ubuntu-latest"
-                      architecture: x86
-                    - os: "macos-latest"
-                      architecture: x86
-                    # macOS on Python 3.8 fails.
-                    # https://github.com/Pylons/pyramid-cookiecutter-starter/pull/94
-                    - os: "macos-latest"
-                      py: "3.8"
-                    # PyPy3 on Windows doesn't seem to work
-                    - os: "windows-latest"
-                      py: "pypy-3.8"
+                    # Ubuntu does not have arm64 releases
+                    - os: "ubuntu-24.04"
+                      architecture: arm64
+                    # macOS does not have Python 3.10 releases
+                    - os: "macos-15"
+                      py: "3.10"
+                    - os: "macos-15-intel"
+                      py: "3.10"
+                    # macOS does not have PyPy releases
+                    - os: "macos-15"
+                      py: "pypy-3.10"
+                    - os: "macos-15-intel"
+                      py: "pypy-3.10"
+                    # Windows does not have arm64 releases
+                    - os: "windows-2022"
+                      architecture: arm64
 
         name: "Python: ${{ matrix.py }}-${{ matrix.architecture }} on ${{ matrix.os }}"
         runs-on: ${{ matrix.os }}
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
             - name: Setup python
-              uses: actions/setup-python@v5
+              uses: actions/setup-python@v6
               with:
                   python-version: ${{ matrix.py }}
                   architecture: ${{ matrix.architecture }}
