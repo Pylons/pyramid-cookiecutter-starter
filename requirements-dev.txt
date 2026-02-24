@@ -2,3 +2,4 @@ cookiecutter
 pytest
 pytest-cookies
 pytest-venv
+setuptools < 82  # require pkg_resources

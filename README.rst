@@ -2,9 +2,9 @@
 pyramid-cookiecutter-starter
 ============================
 
-.. image:: https://github.com/Pylons/pyramid-cookiecutter-starter/workflows/Build%20and%20test/badge.svg?branch=main
-    :target: https://github.com/Pylons/pyramid-cookiecutter-starter/actions?query=branch%3Amain
-    :alt: Main Branch Status
+.. image:: https://github.com/Pylons/pyramid-cookiecutter-starter/actions/workflows/ci-tests.yml/badge.svg?branch=main
+        :target: https://github.com/Pylons/pyramid-cookiecutter-starter/actions/workflows/ci-tests.yml
+        :alt: main CI Status
 
 A Cookiecutter (project template) for creating a Pyramid starter project.
 
@@ -17,7 +17,7 @@ Customizable options upon install include choice of:
 Requirements
 ------------
 
-*   Python 3.8+
+*   Python 3.10+
 *   `cookiecutter <https://cookiecutter.readthedocs.io/en/latest/installation.html>`_
 
 Versions
