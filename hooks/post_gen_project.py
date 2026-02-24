@@ -7,9 +7,32 @@ WORKING = os.path.abspath(os.path.curdir)
 
 
 def main():
+    tidy_config_files()
     clean_unused_template_settings()
     clean_unused_backend()
     display_actions_message()
+
+
+def tidy_config_files():
+    conf_basenames = ['development', 'production', 'testing']
+    conf_exts = ['ini', 'yaml']   # Generated extensions
+    selected_conf_ext = '{{ cookiecutter.configuration_file_type }}'
+
+    for some_file in conf_basenames:
+        for some_ext in conf_exts:
+            if some_ext != selected_conf_ext:
+                conf_path = os.path.join(WORKING, f'{some_file}.{some_ext}')
+                if (selected_conf_ext != 'ini'
+                        and some_ext == 'ini'
+                        and '{{ cookiecutter.backend }}' == 'sqlalchemy'):
+                    # Only alembic uses the ini config files.  Rename the
+                    # standard config file to preface name with 'alembic_'.
+                    os.rename(
+                        conf_path,
+                        os.path.join(
+                             WORKING, f'alembic_{some_file}.{some_ext}'))
+                else:
+                    os.unlink(conf_path)  # remove unused config file
 
 
 def clean_unused_template_settings():
@@ -88,6 +111,9 @@ def delete_other_files(directory, current_prefix, rm_prefixes):
             delete_other_files(full_path, current_prefix, rm_prefixes)
 
 
+{% set conf_prefix = (
+           '' if cookiecutter.configuration_file_type == 'ini'
+           else 'alembic_' ) -%}
 def display_actions_message():
     WIN = sys.platform.startswith('win')
 
@@ -137,19 +163,19 @@ def display_actions_message():
         {% if cookiecutter.backend == 'sqlalchemy' -%}
         Initialize and upgrade the database using Alembic.
             # Generate your first revision.
-            %(alembic_cmd)s -c development.ini revision --autogenerate -m "init"
+            %(alembic_cmd)s -c {{ conf_prefix }}development.ini revision --autogenerate -m "init"
             # Upgrade to that revision.
-            %(alembic_cmd)s -c development.ini upgrade head
+            %(alembic_cmd)s -c {{ conf_prefix }}development.ini upgrade head
 
         Load default data into the database using a script.
-            %(init_cmd)s development.ini
+            %(init_cmd)s {{ conf_prefix }}development.ini
 
         {% endif -%}
         Run your project's tests.
             %(pytest_cmd)s
 
         Run your project.
-            %(pserve_cmd)s development.ini
+            %(pserve_cmd)s development.{{ cookiecutter.configuration_file_type }}
         """ % env_setup)
     print(msg)
 

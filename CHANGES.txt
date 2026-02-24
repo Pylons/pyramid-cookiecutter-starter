@@ -1,6 +1,8 @@
 unreleased
 ----------
 
+- Add configuration file format choices, ini or yaml.
+
 - Fix unwanted literal inclusion of a METAL attribute in rendered output within
   the Chameleon ``layout.pt`` template.
 
