@@ -10,6 +10,7 @@ A Cookiecutter (project template) for creating a Pyramid starter project.
 
 Customizable options upon install include choice of:
 
+*   configuration file format (ini, YAML)
 *   template language (Jinja2, Chameleon, or Mako)
 *   persistent backend (none, SQLAlchemy with SQLite, or ZODB)
 *   mapping of URLs to routes (if the selected persistent backend is "none" or "sqlalchemy" then URL dispatch, or if "zodb" then traversal)
@@ -73,6 +74,7 @@ Usage
         $ env/bin/pytest
 
 #.  Run your project.
+    (Change the "ini" suffix, if you chose a different configuration file format.)
 
     .. code-block:: bash
 

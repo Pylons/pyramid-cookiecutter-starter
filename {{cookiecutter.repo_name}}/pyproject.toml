@@ -18,7 +18,11 @@ classifiers = [
 ]
 requires-python = ">=3.8"
 dependencies = [
+    {%- if cookiecutter.configuration_file_type == "ini" %}
     "plaster_pastedeploy",
+    {%- else %}
+    "plaster_yaml",
+    {%- endif %}
     "pyramid",
     "pyramid_{{ cookiecutter.template_language }}",
     "pyramid_debugtoolbar",
@@ -41,6 +45,7 @@ dependencies = [
 
 [project.optional-dependencies]
 testing = [
+    "plaster",
     "WebTest",
     "pytest",
     "pytest-cov",
@@ -51,7 +56,11 @@ initialize_{{ cookiecutter.repo_name }}_db = "{{ cookiecutter.repo_name }}.scrip
 {% endif %}
 [project.entry-points."paste.app_factory"]
 main = "{{ cookiecutter.repo_name }}:main"
+{% if cookiecutter.configuration_file_type == "yaml" %}
+[project.entry-points.'plaster.loader_factory']
+'file+yaml' = 'plaster_yaml:Loader'
 
+{% endif -%}
 [tool.setuptools.packages.find]
 exclude = ["tests"]
 

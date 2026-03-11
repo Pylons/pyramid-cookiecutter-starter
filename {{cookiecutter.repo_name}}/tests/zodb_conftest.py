@@ -10,16 +10,20 @@ from {{ cookiecutter.repo_name }} import main
 
 
 def pytest_addoption(parser):
+    {%- if cookiecutter.configuration_file_type == 'ini' %}
     parser.addoption('--ini', action='store', metavar='INI_FILE')
+    {%- else %}
+    parser.addoption('--yaml', action='store', metavar='YAML_FILE')
+    {%- endif %}    
 
 @pytest.fixture(scope='session')
-def ini_file(request):
+def {{ cookiecutter.configuration_file_type }}_file(request):
     # potentially grab this path from a pytest option
-    return os.path.abspath(request.config.option.ini or 'testing.ini')
+    return os.path.abspath(request.config.option.{{ cookiecutter.configuration_file_type }} or 'testing.{{ cookiecutter.configuration_file_type }}')
 
 @pytest.fixture(scope='session')
-def app_settings(ini_file):
-    return get_appsettings(ini_file)
+def app_settings({{ cookiecutter.configuration_file_type }}_file):
+    return get_appsettings({{ cookiecutter.configuration_file_type }}_file)
 
 @pytest.fixture(scope='session')
 def app(app_settings):
